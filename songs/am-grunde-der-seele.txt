@@ -1,6 +1,6 @@
-title: Am Grunde der Seele +1
+title: Am Grunde der Seele
 key: Dm
-note: by Joachim Goerke
+note: by Joachim Goerke · Original Key C#m
 
 # 1
 Am [Dm]Grunde der [A#7]Seele da [Gm7]lebt mein [A7]Verlangen
