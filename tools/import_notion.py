@@ -21,7 +21,7 @@ OUT = Path(__file__).resolve().parent.parent / 'songs'
 
 CHORD = re.compile(r'^\(?[A-Ha-h](?:is|es)?[#b♯♭]?(?:maj|min|dim|aug|sus|add|m|M|\+|°|ø|\d|[#b+-]\d)*(?:/[A-Ha-h](?:is|es)?[#b♯♭]?)?\)?$')
 PARTS = re.compile(r'^(\(?)([A-Ha-h])(is|es)?([#b♯♭]?)(.*?)(?:/([A-Ha-h])(is|es)?([#b♯♭]?))?(\)?)$')
-FILLER = {'|', '&', '-', '/', '%', '2x', 'x2', '3x', 'x3', '4x', 'x4'}
+FILLER = {'|', '&', '-', '–', '/', '%', '2x', 'x2', '3x', 'x3', '4x', 'x4'}
 VOWELS = set('aeiouyäöüáéíóúàèìòùâêîôû')
 
 
@@ -65,7 +65,7 @@ def slug(s):
 
 
 def is_chord_line(line):
-    toks = line.split()
+    toks = [t.rstrip('.,') or t for t in line.split()]   # "Dm." is still Dm
     return bool(toks) and any(CHORD.match(t) for t in toks) and all(CHORD.match(t) or t.lower() in FILLER for t in toks)
 
 
@@ -140,8 +140,8 @@ def merge_mono(chords, lyric):
     lyric = lyric.rstrip()
     spots, tail, last = {}, [], -1
     for m in re.finditer(r'\S+', chords):
-        if not CHORD.match(m.group()): continue
-        x, ch = m.start(), norm_chord(m.group())
+        if not CHORD.match(m.group().rstrip('.,')): continue
+        x, ch = m.start(), norm_chord(m.group().rstrip('.,'))
         cands = [(abs(w.start() - x), w.start()) for w in re.finditer(r'\S+', lyric)]
         cands += [(abs(w.start() + i - x) + .9, w.start() + i) for w in re.finditer(r'\S+', lyric) for i in syllable_starts(w.group())]
         if x < len(lyric) and lyric[x] == '_': cands.append((.5, x))   # over a held note (O_____): right where it stands
@@ -155,7 +155,7 @@ def merge_mono(chords, lyric):
 
 def merge(chords, lyric):
     lyric = lyric.rstrip()
-    found = [(width(chords[:m.start()]), norm_chord(m.group())) for m in re.finditer(r'\S+', chords) if CHORD.match(m.group())]
+    found = [(width(chords[:m.start()]), norm_chord(m.group().rstrip('.,'))) for m in re.finditer(r'\S+', chords) if CHORD.match(m.group().rstrip('.,'))]
     words = [(m.start(), m.group()) for m in re.finditer(r'\S+', lyric)]
     spots, tail, last = {}, [], -1
     for x, ch in found:
@@ -176,7 +176,7 @@ def merge(chords, lyric):
 
 
 def chord_row(line):
-    return ' '.join(f'[{norm_chord(t)}]' if CHORD.match(t) else t for t in line.split())
+    return ' '.join(f'[{norm_chord(t.rstrip(".,"))}]' if CHORD.match(t.rstrip('.,')) else t for t in line.split())
 
 
 def convert(title, body, blocks):
@@ -230,10 +230,10 @@ def sheet(head, lines, texts=(), todo=None, mono=False):
         if two and '% check: two keys in the source (like Dm/Em); the first one was kept' not in todo:
             todo.append('% check: two keys in the source (like Dm/Em); the first one was kept')
         if is_chord_line(probe):
-            first = first or next(norm_chord(t) for t in probe.split() if CHORD.match(t))
+            first = first or next(norm_chord(t.rstrip('.,')) for t in probe.split() if CHORD.match(t.rstrip('.,')))
             nxt = lines[i].rstrip() if i < len(lines) else ''
             spaced = mono or len(probe.split()) == 1 or re.search(r'\S\s{2,}\S', probe) or probe.startswith(' ')
-            plain = all(CHORD.match(t) for t in probe.split())
+            plain = all(CHORD.match(t.rstrip('.,')) for t in probe.split())
             if nxt.strip() and not is_chord_line(nxt) and spaced and plain:
                 out.append((merge_mono if mono else merge)(probe, nxt)); i += 1
             else:
