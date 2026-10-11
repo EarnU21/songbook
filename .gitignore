@@ -1,4 +1,6 @@
 .DS_Store
 __pycache__/
-deploy.env
 dist/
+# made by tools/build.py (locally, and by the deploy workflow)
+songs.js
+sw.js

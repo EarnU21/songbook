@@ -14,7 +14,7 @@ The chord format, the transposing code and the offline worker come from Nathan V
    python3 tools/build.py
    ```
 
-`songs.js` and `sw.js` are made by the build. Don't edit them by hand.
+`songs.js` and `sw.js` are made by the build and are not in the repository. Don't edit them by hand.
 
 ## Looking at it
 
@@ -27,13 +27,8 @@ but the offline copy and "add to home screen" only work from a server.
 
 ## Putting it online
 
-```bash
-cp deploy.env.example deploy.env    # once, then fill in host, user and folder
-tools/deploy.sh                     # page, songs, fonts
-tools/deploy.sh --audio             # the recordings too
-```
-
-The site needs https, or the offline copy and "add to home screen" won't work.
+Push to `main`: the workflow in `.github/workflows/deploy.yml` builds the book and publishes it with
+GitHub Pages at music.nikschreiner.de. Editing a song file on github.com does the same. See `docs/deploy.md`.
 
 ## The whole book in one file
 

@@ -142,7 +142,7 @@ self.addEventListener('fetch', e => {
   const rev = REV[path]; if (!rev) return;
   const key = keyFor(path, rev);
   if (FRESH.test(path)) {   // the network first (so updates show), the saved copy without signal
-    e.respondWith(fetch(req).catch(async () => (await caches.match(key)) || Response.error()));
+    e.respondWith(fetch(req.url, { cache: 'no-cache' }).catch(async () => (await caches.match(key)) || Response.error()));
     return;
   }
   e.respondWith((async () => (await caches.match(key)) || fetch(req))());
