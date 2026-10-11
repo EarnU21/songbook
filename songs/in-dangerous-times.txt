@@ -1,6 +1,6 @@
 title: In Dangerous Times
 key: F
-% audio still in Notion: In Dangerous Times.mp3
+audio: audio/in-dangerous-times.mp3
 
 > Starting note C
 In Dangerous times

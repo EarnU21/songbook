@@ -1,6 +1,6 @@
 title: I step into the flow
 link: Spotify Link to a version of this song by us, Erdenherz | https://open.spotify.com/intl-de/track/4A1flOBwlweQiVyzw3NitC?si=1587a736ec844fb0
-% audio still in Notion: 06 I step into the flow.mp3
+audio: audio/i-step-into-the-flow.mp3 | 06 I step into the flow
 
 I step into the flow and then I let it go
 I open my heart my body my soul

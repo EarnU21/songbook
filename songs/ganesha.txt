@@ -1,7 +1,7 @@
 title: Ganesha
 key: Am
 % key guessed from the first chord
-% audio still in Notion: Om Gam Ganapate.mp3
+audio: audio/ganesha.mp3 | Om Gam Ganapate
 
 [Am]Om Gam Ganapataye [F]Namaha
 [C]Om Gam Ganapataye [G]Namaha

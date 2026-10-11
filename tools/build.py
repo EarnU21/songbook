@@ -10,7 +10,7 @@ Run it after adding or changing a song. A song file looks like this:
     capo: 3                  optional: the chords are shapes, played with a capo on this fret
     note: version by ...     optional, shown under the title
     link: Spotify | https://...
-    audio: audio/evening-rise.mp3
+    audio: audio/evening-rise.mp3 | live in the circle     a recording; the label is optional, and there may be several
 
     # Verse                  optional heading; a blank line starts a new block
     [Am]Evening [E]rise, [G]spirit [A]come
@@ -35,7 +35,7 @@ def fold(s):
 
 
 def parse(path):
-    song = {'slug': path.stem, 'title': path.stem, 'key': '', 'capo': 0, 'links': [], 'sections': [], 'texts': []}
+    song = {'slug': path.stem, 'title': path.stem, 'key': '', 'capo': 0, 'links': [], 'audio': [], 'sections': [], 'texts': []}
     lines = path.read_text(encoding='utf-8').splitlines()
     i = 0
     while i < len(lines) and lines[i].strip():   # the header, up to the first blank line
@@ -45,6 +45,9 @@ def parse(path):
             if k == 'link':
                 label, _, url = v.rpartition('|')
                 song['links'].append({'label': label.strip() or 'Link', 'url': url.strip()})
+            elif k == 'audio':
+                src, _, label = v.partition('|')
+                song['audio'].append({'src': src.strip(), 'label': label.strip()})
             elif k == 'capo':
                 song['capo'] = int(v or 0)
             else:

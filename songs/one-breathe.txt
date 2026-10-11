@@ -1,7 +1,7 @@
 title: One Breathe
 key: C
 % key guessed from the first chord
-% audio still in Notion: One Breath.mp3
+audio: audio/one-breathe.mp3 | One Breath
 
 [C]One Breathe, Breathe [F7]of Eternity
 [G]One song, becomes [C]a [Em]synphony

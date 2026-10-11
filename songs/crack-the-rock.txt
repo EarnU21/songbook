@@ -1,7 +1,7 @@
 title: Crack the Rock
 key: D
 % key guessed from the first chord
-% audio still in Notion: Crack the Rock.m4a
+audio: audio/crack-the-rock.m4a
 
 by Rumi
 [D]When [Am]inward [D]tenderness finds [Am]the secret hurt

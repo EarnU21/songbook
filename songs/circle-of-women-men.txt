@@ -2,7 +2,7 @@ title: Circle of Women & Men
 key: Am
 link: Spotify Link to a version of this song by us, Erdenherz | https://open.spotify.com/intl-de/track/1dRPe7CwHbAr0g1Fdz3f1B?si=42b7f07dae8a42de
 % key guessed from the first chord
-% audio still in Notion: Circle of Women & Men.mp3
+audio: audio/circle-of-women-men.mp3
 
 [Am]And may all mothers [Em]know that they [Am]are loved
 [Am]And may all sisters [Em]know that the [Am]are strong

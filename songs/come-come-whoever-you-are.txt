@@ -3,8 +3,8 @@ key: Cm
 link: Spotify Link | https://open.spotify.com/intl-de/track/6oNBOdHgBs0BZsswsvoTZ4?si=671b13d3305f497e
 link: Youtube-Link | https://www.youtube.com/watch?v=_eiMlVhrpoo
 % key guessed from the first chord
-% audio still in Notion: Come come whoever you are.mp3
 % check: two keys in the source (like Dm/Em); the first one was kept
+audio: audio/come-come-whoever-you-are.mp3
 
 by The Love Keys
 # Verse (2x)

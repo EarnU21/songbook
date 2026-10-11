@@ -1,8 +1,8 @@
 title: Let the Way of the Heart
 key: Am
 % key guessed from the first chord
-% audio still in Notion: Let the way of the heart.mp3
 % check: two keys in the source (like Dm/Em); the first one was kept
+audio: audio/let-the-way-of-the-heart.mp3
 
 Let the [Am]way of the heart
 Let the [G]way of the heart

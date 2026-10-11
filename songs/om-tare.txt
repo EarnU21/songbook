@@ -1,6 +1,6 @@
 title: Om Tare
 key: Bm
-% audio still in Notion: Om Tare.mp3
+audio: audio/om-tare.mp3
 
 [Bm]Om Tare [(Gmaj7)]Tuttare Ture [A]Sua[D]ha
 [Em]Om Tare [F#m]Tuttare [Gmaj7]Ture [Gb5]Suaha

@@ -141,9 +141,9 @@ function renderPage() {
   const links = document.getElementById('links');
   links.innerHTML = SONG.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join(' · ');
   links.hidden = !SONG.links.length;
-  const audio = document.getElementById('audio');
-  audio.pause(); audio.hidden = !SONG.audio;
-  if (SONG.audio) audio.src = SONG.audio; else audio.removeAttribute('src');
+  /* recordings load only when played; the offline worker keeps each one after its first play */
+  document.getElementById('audio').innerHTML = SONG.audio.map(a =>
+    `<figure>${a.label ? `<figcaption>${esc(a.label)}</figcaption>` : ''}<audio controls preload="none" src="${esc(a.src)}"></audio></figure>`).join('');
   document.getElementById('texts').innerHTML = SONG.texts.map(t => `<details><summary>${esc(t.title)}</summary><div>${esc(t.body)}</div></details>`).join('');
   const i = SONGS.indexOf(SONG), prev = SONGS[i - 1], next = SONGS[i + 1];
   document.getElementById('foot').innerHTML = (prev ? `<a href="#/${prev.slug}">← ${esc(prev.title)}</a>` : '<span></span>') + (next ? `<a href="#/${next.slug}">${esc(next.title)} →</a>` : '');
@@ -211,7 +211,7 @@ function route() {
   document.getElementById('home').hidden = !!SONG;
   document.getElementById('page').hidden = !SONG;
   stayAwake(!!SONG);
-  if (!SONG) { document.title = 'Mantra Collection | Nik & Friends'; document.getElementById('audio').pause(); scrollTo(0, listScroll); return; }
+  if (!SONG) { document.title = 'Mantra Collection | Nik & Friends'; document.getElementById('audio').innerHTML = ''; scrollTo(0, listScroll); return; }
   const key = parsePitch(SONG.key || '');
   SONG_KEY = key ? key.pc : 0;
   MINOR = !!key && /^m(?!aj)/.test(SONG.key.slice(key.len));

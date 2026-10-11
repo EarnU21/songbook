@@ -1,7 +1,7 @@
 title: Durga (Jay Sri Ma)
 key: G
 % key guessed from the first chord
-% audio still in Notion: Durga.mp3
+audio: audio/durga-jay-sri-ma.mp3 | Durga
 
 Jay Sri [G]Ma Kali Kali [Am]Ma Jay Sri [Em]Ma
 Jay Sri [G]Ma Kali Kali [Am]Ma Jay Sri [Em]Ma

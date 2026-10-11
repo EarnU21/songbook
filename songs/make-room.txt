@@ -3,7 +3,7 @@ key: F
 note: Community Music
 % key guessed from the first chord
 
-# Verse 1
+# Verse
 [F]Here is where I lay it [C]down
 Every burden, every [Gm]crown
 

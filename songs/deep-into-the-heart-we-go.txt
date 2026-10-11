@@ -1,8 +1,8 @@
 title: Deep Into the Heart We Go
 key: Am
 % key guessed from the first chord
-% audio still in Notion: 240622 Deep into the Heart (live @OSB-stereo-cut).mp3
 % check: two keys in the source (like Dm/Em); the first one was kept
+audio: audio/deep-into-the-heart-we-go.mp3 | 240622 Deep into the Heart (live @OSB-stereo-cut)
 
 Tarisha Seligman
 [Am]Deep into the heart we [G]go

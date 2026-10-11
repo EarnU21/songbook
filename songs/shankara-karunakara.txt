@@ -2,7 +2,7 @@ title: Shankara Karunakara
 key: Bm
 link: Spotify Link | https://open.spotify.com/intl-de/track/1jIh7dwwM3swIwnwnn1qTX?si=c3a300b7c02c4fea
 % key guessed from the first chord
-% audio still in Notion: Shankara.mp3
+audio: audio/shankara-karunakara.mp3 | Shankara
 
 [Bm]Shankara [A]Karunakara
 [G]Jagadeswara [Bm]Parameshvara

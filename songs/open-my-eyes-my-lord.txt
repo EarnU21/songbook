@@ -1,7 +1,7 @@
 title: Open my eyes my lord
 key: Dm
 % key guessed from the first chord
-% audio still in Notion: Open my Eyes my Lord.mp3
+audio: audio/open-my-eyes-my-lord.mp3
 
 [Dm]Open my eyes my [F]lord I want to [C]see you all [G]the time
 [Dm]Open my ears my [F]lord I want to [C]hear you all [G]the time

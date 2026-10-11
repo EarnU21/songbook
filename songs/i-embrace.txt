@@ -1,7 +1,7 @@
 title: I embrace
 key: A#
 % key guessed from the first chord
-% audio still in Notion: signal-2026-03-11-165441.mp3
+audio: audio/i-embrace.mp3
 
 Nik Schreiner, 2026 nach Silence-Retreat
 [A#] [C] [G]

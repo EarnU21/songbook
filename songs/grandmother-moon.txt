@@ -2,7 +2,7 @@ title: Grandmother Moon
 key: Am
 link: Spotify Link | https://open.spotify.com/intl-de/track/6XUCdwCXNh3FdByUP4C1Gu?si=1b5401e8cbbb4afe
 % key guessed from the first chord
-% audio still in Notion: track_03.mp3
+audio: audio/grandmother-moon.mp3
 
 by Erdenherz
 # Verse 1

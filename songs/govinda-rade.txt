@@ -1,7 +1,7 @@
 title: Govinda Rade
 key: Ebm
 % key guessed from the first chord
-% audio still in Notion: Govinda Rade.mp3
+audio: audio/govinda-rade.mp3
 
 [Ebm]Govinda, Rade [B]Raade
 Gopala, Rade, [G#]Raade

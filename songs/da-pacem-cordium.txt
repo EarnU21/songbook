@@ -1,0 +1,8 @@
+title: Da pacem cordium
+key: D#m
+note: Taizé
+% key guessed from the first chord
+
+Da [D#m]pacem cor[G#]dium. Da [D#m]pacem cor[G#]dium
+Da [D#m]pa - [G#]- - [D#m]- [G#]cem
+Da [D#m]pa - [G#]- - - [D#m]- [G#]cem

@@ -125,7 +125,8 @@ def width(s):
 def syllable_starts(word):
     """Places inside a word where a chord may land: a consonant that opens a new syllable."""
     return [i for i in range(1, len(word) - 1)
-            if word[i].isalpha() and word[i].lower() not in VOWELS and word[i + 1].lower() in VOWELS and word[i - 1].isalpha()]
+            if word[i].isalpha() and word[i].lower() not in VOWELS and word[i + 1].lower() in VOWELS and (word[i - 1].isalpha() or word[i - 1] == '-')
+            and any(c in VOWELS for c in word[:i].lower())]   # not inside the opening consonants (Ch-rist)
 
 
 def merge_mono(chords, lyric):

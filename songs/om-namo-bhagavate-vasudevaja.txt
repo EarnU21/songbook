@@ -1,7 +1,7 @@
 title: Om Namo Bhagavate Vasudevaja
 key: Dm
 % key guessed from the first chord
-% audio still in Notion: Om Namo Bhaghavate.mp3
+audio: audio/om-namo-bhagavate-vasudevaja.mp3 | Om Namo Bhaghavate
 
 by Kevin James
 [Dm]Om Namo [F]Bhagavate [Am]Vasu-devaja [Dm]om

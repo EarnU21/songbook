@@ -1,0 +1,7 @@
+title: Jesus, remember me
+key: Eb
+note: Taizé
+% key guessed from the first chord
+
+[Eb]Jesus, remember [Fm7]me [Bb]when you come into your [Eb]king-dom.
+[Cm]Jesus, re-[Fm]member me [Bb]when you come into your [Eb]king-dom.

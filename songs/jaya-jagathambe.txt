@@ -1,7 +1,7 @@
 title: Jaya Jagathambe
 key: C
 % key guessed from the first chord
-% audio still in Notion: Jagadambe.mp3
+audio: audio/jaya-jagathambe.mp3 | Jagadambe
 
 [C]Jay Jaya [F]Jagatambe Jay jay Ma :|
 Jay [Am]Ma [G]Durga :|

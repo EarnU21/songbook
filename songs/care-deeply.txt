@@ -2,7 +2,7 @@ title: Care Deeply
 key: Am
 link: Text and Music by Ananda aka Injoy | https://open.spotify.com/artist/68qIsubMWgOBCFokiyO2b5?si=hDeeyMkpSHimyY5ULJ4x6Q
 % key guessed from the first chord
-% audio still in Notion: 241004-Ananda-Care-deeply_-Am-E-Dm-Am.mp3
+audio: audio/care-deeply.mp3 | 241004-Ananda-Care-deeply_-Am-E-Dm-Am
 
 [Am]Dear world and people, [E]beings on earth
 with [Dm]love I care about [Am]me

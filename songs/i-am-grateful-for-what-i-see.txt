@@ -1,4 +1,12 @@
 title: I am grateful for what I see
-% image still in Notion: I Am grateful for what I see.jpg
+key: Em
+note: Music: Juri de Marco · Words: Thomas Hübl
+% read from the sheet (C-Stimme) on the Notion page
 
+I am [Em]grateful for what I [A]see.
+I am [Cmaj7]grateful for what stays [D]hidden for me.
+I am [Em]grateful for what I [A]see,
+because [C]this [D]is thy [Em]will.
 
+[E5]And that's why I'm he[Esus4]re
+Now and for[E]e[Esus2]ver A[E]men.

@@ -2,8 +2,8 @@ title: Another World is not only possible
 key: Dm
 link: youtu.be | https://youtu.be/X9p5ieOoEMw?si=RokEPvPQ6bbBY0JS
 % key guessed from the first chord
-% audio still in Notion: Another World is not only possible.mp3
 % file still in Notion: Another World - Partitur.pdf
+audio: audio/another-world-is-not-only-possible.mp3
 
 by Diane Kaplan
 hear her beathing can also be sung in arabic and hebraic

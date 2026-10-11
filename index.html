@@ -82,7 +82,9 @@
   .facts { margin: .3rem 0 0; color: var(--ink-soft); }
   .facts b { color: var(--ink); }
   .links { margin: .5rem 0 0; }
-  audio { display: block; width: 100%; margin: .8rem 0 0; }
+  #audio figure { margin: .8rem 0 0; }
+  #audio figcaption { font-size: .95rem; color: var(--ink-soft); }
+  audio { display: block; width: 100%; }
 
   #song { padding: .6rem 0 1rem; font-size: var(--size); }
   .sec { margin: 1.3rem 0 0; }
@@ -106,7 +108,7 @@
   .foot a { color: var(--ink); max-width: 48%; }
 
   @media print {
-    .bar, .foot, audio, .links { display: none !important; }
+    .bar, .foot, #audio, .links { display: none !important; }
     body { background: #fff; color: #000; }
     details div { display: block; }
   }
@@ -159,7 +161,7 @@
       <h1 id="title"></h1>
       <p class="facts" id="facts"></p>
       <p class="links" id="links" hidden></p>
-      <audio id="audio" controls preload="none" hidden></audio>
+      <div id="audio"></div>
     </header>
     <div id="song"></div>
     <div id="texts"></div>

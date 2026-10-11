@@ -1,7 +1,7 @@
 title: Thank You
 key: Am
 % key guessed from the first chord
-% audio still in Notion: Thank you.mp3
+audio: audio/thank-you.mp3
 
 by me, Nik :)
 [Am]Thank you

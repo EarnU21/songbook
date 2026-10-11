@@ -1,0 +1,11 @@
+title: Behüte mich, Gott
+key: D
+capo: 3
+note: Taizé
+% key guessed from the first chord
+
+[D]Behü-[A]te mich, [Bm]Gott,
+ich vert[Em]raue [A]dir,
+du [F#m]zeigst mir den [Em]Weg zum [G]Le[D]ben.
+[Bm]Bei [A]dir ist [Bm]Freude,
+[G]Freude in [D]Fül[A]le.

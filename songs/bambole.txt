@@ -1,8 +1,8 @@
 title: Bambole
 key: Bm
 % key guessed from the first chord
-% video still in Notion: msg842664789-4351.ogg
 % file still in Notion: Be just the way you are
+audio: audio/bambole.m4a
 
 by Mooji Mala Zmar 2019
 [Bm]Bambole [D]Bambole [A]Bambole [G]Bamboleeee

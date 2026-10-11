@@ -4,8 +4,8 @@ capo: 2
 link: Spotify Link a song by Sunny Davidson | https://open.spotify.com/intl-de/track/7w97836S2jTUJT9NY9B05X?si=d4a59cf30fd9489e
 link: Spotify Link a song by Sunny Davidson | https://open.spotify.com/intl-de/artist/3v1V1SGBYtGFJNTOnfMo1h
 % key guessed from the first chord
-% audio still in Notion: Grandmother I honor you.m4a
 % check: two keys in the source (like Dm/Em); the first one was kept
+audio: audio/grandmother-i-honor-you.m4a
 
 [Am]Grandmother I honor you, your water is [G]my blood.
 [Em]Every day and every [F]night, I [G]give thanks for [Am]your love.
