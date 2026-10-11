@@ -1,0 +1,7 @@
+title: Lass deinen Mund stille sein
+key: Am
+note: Helge Burggrabe
+% key guessed from the first chord
+
+[Am]Lass deinen [E]Mund [C]stille [D]sein, [F]dann [G]spricht [C]dein [E]Herz.
+[Am]Lass dein [E]Herz [C]stille [D]sein, [F]dann [E]spricht [Am]Gott.

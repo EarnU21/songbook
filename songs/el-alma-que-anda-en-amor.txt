@@ -1,0 +1,13 @@
+title: El alma que anda en amor
+key: F#m
+note: Taizé
+% key guessed from the first chord
+
+El [F#m]alma [C#m]que anda [E]en [A]amor,
+[A]ni [D]cansa [E]ni [C#m]se [F#m]cansa.
+
+El [F#m]alma [C#m]que anda [E]en [A]amor,
+[A]ni [D]cansa [E]ni [C#m]se [F#m]cansa.
+
+[Bm]O__[E]__[E]__[A]__[D]_
+[Bm]O__[Bm]___[E]_

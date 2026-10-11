@@ -19,7 +19,7 @@ PAGE = '8fc8b761-febd-4ab6-a904-1c72eaaa3cf7'
 API = 'https://nikschreiner.notion.site/api/v3/loadPageChunk'
 OUT = Path(__file__).resolve().parent.parent / 'songs'
 
-CHORD = re.compile(r'^\(?[A-Ha-h](?:is|es)?[#b♯♭]?(?:maj|min|dim|aug|sus|add|m|M|\+|°|ø|\d|[#b]\d)*(?:/[A-Ha-h](?:is|es)?[#b♯♭]?)?\)?$')
+CHORD = re.compile(r'^\(?[A-Ha-h](?:is|es)?[#b♯♭]?(?:maj|min|dim|aug|sus|add|m|M|\+|°|ø|\d|[#b+-]\d)*(?:/[A-Ha-h](?:is|es)?[#b♯♭]?)?\)?$')
 PARTS = re.compile(r'^(\(?)([A-Ha-h])(is|es)?([#b♯♭]?)(.*?)(?:/([A-Ha-h])(is|es)?([#b♯♭]?))?(\)?)$')
 FILLER = {'|', '&', '-', '/', '%', '2x', 'x2', '3x', 'x3', '4x', 'x4'}
 VOWELS = set('aeiouyäöüáéíóúàèìòùâêîôû')
@@ -124,9 +124,15 @@ def width(s):
 
 def syllable_starts(word):
     """Places inside a word where a chord may land: a consonant that opens a new syllable."""
-    return [i for i in range(1, len(word) - 1)
-            if word[i].isalpha() and word[i].lower() not in VOWELS and word[i + 1].lower() in VOWELS and (word[i - 1].isalpha() or word[i - 1] == '-')
-            and any(c in VOWELS for c in word[:i].lower())]   # not inside the opening consonants (Ch-rist)
+    out = set()
+    for i in range(1, len(word) - 1):
+        if not (word[i].isalpha() and word[i].lower() not in VOWELS and word[i + 1].lower() in VOWELS): continue
+        if not (word[i - 1].isalpha() or word[i - 1] == '-'): continue
+        if not any(c in VOWELS for c in word[:i].lower()): continue   # not inside the opening consonants (Ch-rist)
+        j = i
+        while j > 0 and word[j - 1].isalpha() and word[j - 1].lower() not in VOWELS: j -= 1
+        out.add(j if j > 0 and word[j - 1] == '-' else i)   # after a hyphen the syllable starts right there (Wa-chet)
+    return sorted(out)
 
 
 def merge_mono(chords, lyric):
@@ -137,7 +143,8 @@ def merge_mono(chords, lyric):
         if not CHORD.match(m.group()): continue
         x, ch = m.start(), norm_chord(m.group())
         cands = [(abs(w.start() - x), w.start()) for w in re.finditer(r'\S+', lyric)]
-        cands += [(abs(w.start() + i - x) + 1.5, w.start() + i) for w in re.finditer(r'\S+', lyric) for i in syllable_starts(w.group())]
+        cands += [(abs(w.start() + i - x) + .9, w.start() + i) for w in re.finditer(r'\S+', lyric) for i in syllable_starts(w.group())]
+        if x < len(lyric) and lyric[x] == '_': cands.append((.5, x))   # over a held note (O_____): right where it stands
         cands = [c for c in cands if c[1] > last]
         if x >= len(lyric) or not cands:
             tail.append(ch); continue

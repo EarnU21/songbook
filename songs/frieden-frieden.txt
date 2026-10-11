@@ -1,0 +1,7 @@
+title: Frieden, Frieden
+key: Gm
+note: Taizé
+% key guessed from the first chord
+
+[Gm]Frieden, [A#]Frieden hinter-[Cm]lasse ich [D]euch. [A#]Meinen [Cm]Frieden
+[F]gebe ich [Gm]euch. Euer [Cm]Herz ver-[D]zage [Gm]nicht.
