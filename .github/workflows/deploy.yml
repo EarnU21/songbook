@@ -1,0 +1,101 @@
+# Kopiert bei jedem Push auf "main" das Songbook per SFTP zu Infomaniak (music.nikschreiner.de). Vorher wird es neu gebaut
+# und geprüft (bei einem Fehler passiert nichts auf dem Server). Löscht NIE etwas auf dem Server.
+# Die Aufnahmen (audio/, groß) gehen nur mit, wenn sich dort etwas geändert hat oder der manuelle Lauf es verlangt.
+#
+# Einrichtung (einmalig): siehe docs/deploy.md. Secrets in GitHub (Settings > Secrets and variables > Actions):
+#   SFTP_HOST, SFTP_USERNAME, SFTP_PASSWORD, SFTP_TARGET_PATH (voller Pfad des Document Root von music.nikschreiner.de)
+# Fehlt eines davon, läuft nur die Prüfung und das Kopieren wird übersprungen.
+
+name: Deploy to Infomaniak
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # manueller Lauf über den Reiter "Actions", ohne extra Commit
+    inputs:
+      audio:
+        description: "Auch alle Aufnahmen (audio/) hochladen"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      # In "if:" lassen sich Secrets nicht direkt abfragen; über diese Variable geht es.
+      HAS_SFTP: ${{ secrets.SFTP_HOST != '' && secrets.SFTP_USERNAME != '' && secrets.SFTP_PASSWORD != '' && secrets.SFTP_TARGET_PATH != '' }}
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # für den Vergleich "hat sich audio/ geändert?"
+
+      - name: Songbook bauen und prüfen
+        run: |
+          set -euo pipefail
+          python3 tools/build.py
+          node --check app.js
+          node --check sw.js
+          test "$(ls songs/*.txt | wc -l)" -gt 0
+
+      - name: Paket zusammenstellen
+        run: |
+          set -euo pipefail
+          mkdir site
+          cp .htaccess index.html app.js songs.js sw.js manifest.webmanifest dist/mantra-collection.html site/
+          cp -R assets site/
+          # Sicherheitsnetz: keine Quellen, Werkzeuge oder Zugangsdaten im Paket
+          test ! -e site/deploy.env
+          test ! -d site/tools
+          find site -type f | sort
+
+      - name: Haben sich die Aufnahmen geändert?
+        id: audio
+        env:
+          BEFORE: ${{ github.event.before }}
+          WANTED: ${{ inputs.audio }}
+        run: |
+          if [ "$WANTED" = "true" ] || [ -z "$BEFORE" ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null || ! git diff --quiet "$BEFORE" HEAD -- audio; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"; echo "Aufnahmen gehen mit."
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"; echo "Aufnahmen unverändert, werden nicht kopiert."
+          fi
+
+      - name: Zugangsdaten fehlen (Kopieren wird übersprungen)
+        if: env.HAS_SFTP != 'true'
+        run: echo "Die GitHub-Secrets SFTP_HOST, SFTP_USERNAME, SFTP_PASSWORD und SFTP_TARGET_PATH sind nicht (vollständig) gesetzt. Siehe docs/deploy.md."
+
+      - name: Aufnahmen per SFTP zu Infomaniak kopieren
+        if: env.HAS_SFTP == 'true' && steps.audio.outputs.changed == 'true'
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22
+          source: "audio"
+          target: ${{ secrets.SFTP_TARGET_PATH }}
+          rm: false
+          overwrite: true
+
+      # Zuletzt, damit sw.js (das den Handys sagt: es gibt Neues) erst ankommt, wenn alles andere da ist
+      - name: Songbook per SFTP zu Infomaniak kopieren
+        if: env.HAS_SFTP == 'true'
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22
+          source: "site/.htaccess,site/index.html,site/app.js,site/songs.js,site/sw.js,site/manifest.webmanifest,site/mantra-collection.html,site/assets"
+          strip_components: 1
+          target: ${{ secrets.SFTP_TARGET_PATH }}
+          rm: false
+          overwrite: true

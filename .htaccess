@@ -1,0 +1,8 @@
+# Die Seite, die Songs und der Offline-Worker werden bei jedem Aufruf beim Server nachgefragt.
+# Sonst kommen neue Songs nicht bei den Handys an, die das Songbook schon gespeichert haben.
+<IfModule mod_headers.c>
+  <FilesMatch "^(sw\.js|songs\.js|app\.js|index\.html)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+AddType application/manifest+json .webmanifest

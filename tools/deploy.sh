@@ -11,12 +11,13 @@ cd "$(dirname "$0")/.."
 
 [ -f deploy.env ] || { echo "deploy.env is missing: copy deploy.env.example to deploy.env and fill it in." >&2; exit 1; }
 source deploy.env
-: "${SFTP_HOST:?set SFTP_HOST in deploy.env}" "${SFTP_USER:?set SFTP_USER in deploy.env}" "${SFTP_PATH:?set SFTP_PATH in deploy.env}"
+: "${SFTP_HOST:?set SFTP_HOST in deploy.env}" "${SFTP_USERNAME:?set SFTP_USERNAME in deploy.env}" "${SFTP_TARGET_PATH:?set SFTP_TARGET_PATH in deploy.env}"
 
 python3 tools/build.py
 
 # a leading "-" lets sftp carry on when the folder is already there
-commands="cd $SFTP_PATH
+commands="cd $SFTP_TARGET_PATH
+put .htaccess
 put index.html
 put app.js
 put songs.js
@@ -34,6 +35,6 @@ commands+="put sw.js
 bye
 "
 
-echo "Uploading to $SFTP_USER@$SFTP_HOST:$SFTP_PATH ..."
-sftp -P "${SFTP_PORT:-22}" "$SFTP_USER@$SFTP_HOST" <<< "$commands"
+echo "Uploading to $SFTP_USERNAME@$SFTP_HOST:$SFTP_TARGET_PATH ..."
+sftp -P "${SFTP_PORT:-22}" "$SFTP_USERNAME@$SFTP_HOST" <<< "$commands"
 echo "Done."
