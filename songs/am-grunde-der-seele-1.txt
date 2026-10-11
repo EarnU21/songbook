@@ -1,14 +1,15 @@
 title: Am Grunde der Seele +1
 key: Dm
-% key guessed from the first chord
+note: by Joachim Goerke
 
-by Joachim Goerke
-Dm               A#7.          Gm7.         A7
-Am Grunde der Seele da lebt mein Verlangen
-Am Grunde der Seele da lebt meine Sehnsucht
+# 1
+Am [Dm]Grunde der [A#7]Seele da [Gm7]lebt mein [A7]Verlangen
 mich [Dm]ganz [Gm]hinzugeben an [A#]mein eigenes [A7]Herz
-Dm      A#7.                Gm7         A7
-Durch Liebe geläutert, zur Demut gefunden
-Ich lausche in Stille bin achtsam und dankbar
+Durch [Dm]Liebe [A#7]geläutert, zur [Gm7]Demut [A7]gefunden
 [Dm]Öffne ich mich [Gm]tiefer [A#]für das was [A7]ich wirklich [Dm]bin
-Lausche auf das was sich in mir offenbart
+
+# 2
+Am [Dm]Grunde der [A#7]Seele da [Gm7]lebt meine [A7]Sehnsucht
+mich [Dm]ganz [Gm]hinzugeben an [A#]mein eigenes [A7]Herz
+Ich [Dm]lausche in [A#7]Stille bin [Gm7]achtsam und [A7]dankbar
+[Dm]Lausche auf [Gm]das was [A#]sich in [A7]mir offen[Dm]bart
