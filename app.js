@@ -229,6 +229,7 @@ route();
    Hidden when the collection is already open from the home screen, and in browsers that can't do either. */
 (() => {
   const box = document.getElementById('install'), btn = document.getElementById('installBtn'), how = document.getElementById('installHow');
+  if (window.SINGLE_FILE) return;   // the one-file copy can't be installed
   const installed = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   if (installed) { try { navigator.storage?.persist?.(); } catch (e) {} return; }   // ask the phone to keep the offline copy
   const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);

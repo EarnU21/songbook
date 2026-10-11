@@ -150,6 +150,25 @@ self.addEventListener('fetch', e => {
 '''
 
 
+def single_file(songs):
+    """dist/mantra-collection.html: the whole book in one file, to pass on or keep on a device.
+    Words, chords, transposing and search; no recordings, no fonts, no offline worker."""
+    html = (ROOT / 'index.html').read_text(encoding='utf-8')
+    html = re.sub(r'<link rel="(stylesheet|manifest|icon|apple-touch-icon)"[^>]*>\n', '', html)
+    html = re.sub(r'<script>\n/\* Offline:.*?</script>\n', '', html, flags=re.S)
+    lean = [{**s, 'audio': []} for s in songs]
+    inline = lambda code: '<script>\n' + code.replace('</', '<\\/') + '\n</script>'
+    data = 'window.SINGLE_FILE = true;\nwindow.SONGS = ' + json.dumps(lean, ensure_ascii=False, separators=(',', ':')) + ';'
+    for tag, code in (('<script src="songs.js"></script>', data), ('<script src="app.js"></script>', (ROOT / 'app.js').read_text(encoding='utf-8'))):
+        assert tag in html
+        html = html.replace(tag, inline(code))
+    assert '<script src=' not in html and 'serviceWorker' not in html and '<link rel=' not in html
+    (ROOT / 'dist').mkdir(exist_ok=True)
+    out = ROOT / 'dist' / 'mantra-collection.html'
+    out.write_text(html, encoding='utf-8')
+    return out
+
+
 def main():
     songs = sorted((parse(p) for p in (ROOT / 'songs').glob('*.txt')), key=lambda s: fold(s['title']))
     (ROOT / 'songs.js').write_text('/* Made by tools/build.py from songs/*.txt: don\'t edit by hand. */\nwindow.SONGS = '
@@ -158,6 +177,8 @@ def main():
     revs = [[f, hashlib.sha1((ROOT / f).read_bytes()).hexdigest()[:10]] for f in files if (ROOT / f).exists()]
     (ROOT / 'sw.js').write_text(SW.replace('__FILES__', json.dumps(revs)), encoding='utf-8')
     print(f'{len(songs)} songs, {(ROOT / "songs.js").stat().st_size / 1024:.0f} KB; {len(revs)} files saved for offline use')
+    out = single_file(songs)
+    print(f'{out.relative_to(ROOT)}: the whole book in one file, {out.stat().st_size / 1024:.0f} KB')
     for s in songs:
         if not s['key']: print('  no key:', s['slug'])
 

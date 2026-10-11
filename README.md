@@ -25,6 +25,21 @@ python3 -m http.server 8765
 Then open http://localhost:8765. Opening `index.html` straight from the disk shows the songs too,
 but the offline copy and "add to home screen" only work from a server.
 
+## Putting it online
+
+```bash
+cp deploy.env.example deploy.env    # once, then fill in host, user and folder
+tools/deploy.sh                     # page, songs, fonts
+tools/deploy.sh --audio             # the recordings too
+```
+
+The site needs https, or the offline copy and "add to home screen" won't work.
+
+## The whole book in one file
+
+Every build also writes `dist/mantra-collection.html`: words, chords, transposing and search in a single
+file of about 150 KB, without recordings. It opens straight from the disk and can be passed on as it is.
+
 ## Adding a song from a chord sheet
 
 Copy a sheet with the chords on their own line above the words (the way chord sites show them), then:
