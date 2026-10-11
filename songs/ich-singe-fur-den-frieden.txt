@@ -1,0 +1,11 @@
+title: Ich singe für den Frieden
+key: Dm
+capo: 2
+link: youtube.com | https://youtube.com/clip/UgkxJ7Xfmt3nZ-4iN-HCnr6t0OuW92aCPrw6
+% key guessed from the first chord
+% check: two keys in the source (like Dm/Em); the first one was kept
+
+[Dm]Ich singe für den [G]Frieden, [C]ich singe für das [Am]Licht
+[Dm]Ich singe für [G]die Liebe, [C]die alle Not besiegt
+[Dm]Ich singe für das [G]Leben, [C]ich sing auf meinem [A7]Weg
+[Dm]Ich singe für [G]den Wind, [C]der dreht

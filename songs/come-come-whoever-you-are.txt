@@ -1,0 +1,18 @@
+title: Come, Come whoever you are
+key: Cm
+link: Spotify Link | https://open.spotify.com/intl-de/track/6oNBOdHgBs0BZsswsvoTZ4?si=671b13d3305f497e
+link: Youtube-Link | https://www.youtube.com/watch?v=_eiMlVhrpoo
+% key guessed from the first chord
+% audio still in Notion: Come come whoever you are.mp3
+% check: two keys in the source (like Dm/Em); the first one was kept
+
+by The Love Keys
+# Verse (2x)
+[Cm]Come, come, [G#maj7]whoever you are.
+[A#]Wanderer, worshiper, lover [D#]of [Gm7]leaving.
+[Cm]Come, come, [G#maj7]whoever you are.
+[A#]This isn’t a [D#]caravan [Gm7]of despair.
+# Chorus
+[Fm]It doesn't matter if you’ve [Bb]broken your vows.
+[D#]A thousand times [F]before and yet [G#maj7]again.
+[A#]Come again come, [Cm]and yet again come.

@@ -1,0 +1,10 @@
+title: All I have to Do
+key: Am
+% key guessed from the first chord
+% audio still in Notion: All I Have to Do.mp3
+% check: two keys in the source (like Dm/Em); the first one was kept
+
+[Am]All I have to do, is open my [C]heart,
+[G]wider than ever [Dm]before.
+[Am]Into the horizon across these [C]lands,
+[G]deep into the earth [Dm]on which I stand.

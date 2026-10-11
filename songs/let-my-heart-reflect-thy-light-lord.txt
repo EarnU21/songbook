@@ -1,0 +1,13 @@
+title: Let my heart reflect thy light lord
+key: Em
+capo: 2
+% key guessed from the first chord
+% check: two keys in the source (like Dm/Em); the first one was kept
+
+# Verse (2x)
+[Em]Let my [D]heart reflect [Em]thy light [Bm]lord,
+[Em]as the [D]moon reflects [C]the light [D]of the sun
+[Em]in love, [Bm]always [Em]in love
+# Chorus (2x)
+[Em] [D] … [Em]
+Hu Allah Hu Allah Hu Allah Hu

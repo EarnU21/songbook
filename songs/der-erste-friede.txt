@@ -1,0 +1,10 @@
+title: Der erste Friede
+key: G
+link: youtube.com | https://www.youtube.com/watch?v=Vy7c3EpFj2Y
+% key guessed from the first chord
+% check: two keys in the source (like Dm/Em); the first one was kept
+
+[G]Der erste Friede, der wohnt in [C]mir [G]
+[G]Den zweiten Frieden [Bm]finde ich mit [Em]dir
+[C]Der dritte [D]Friede ist der [G]in der Welt,
+[C]der ohne [Am]den ersten [D]niemals hält.

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mantra Collection | Nik &amp; Friends</title>
+<meta name="description" content="Mantras and songs from singing circles: words and chords, in any key.">
+<meta property="og:title" content="Mantra Collection | Nik &amp; Friends">
+<meta property="og:description" content="Mantras and songs from singing circles: words and chords, in any key.">
+<link rel="stylesheet" href="assets/fonts.css">
+<!-- Add to home screen; the book keeps working offline (sw.js) -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Mantras">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#f6f1e6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#181714" media="(prefers-color-scheme: dark)">
+<style>
+  :root {
+    --paper: #f6f1e6;
+    --card: #fffdf8;
+    --ink: #22201c;
+    --ink-soft: #625b50;
+    --line: #d9d0bf;
+    --chord: #0f6b5c;
+    --sun: #e0a526;
+    --body: "Atkinson Hyperlegible", "Helvetica Neue", Arial, sans-serif;
+    --size: 1.2rem;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #181714; --card: #22201c; --ink: #ece6d8; --ink-soft: #a89f90; --line: #3a362f; --chord: #6fd0b8; }
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.5; }
+  [hidden] { display: none !important; }
+  button, select, input { font: inherit; color: inherit; }
+  a { color: var(--chord); }
+  :focus-visible { outline: 3px solid var(--chord); outline-offset: 2px; }
+  .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1rem; }
+
+  /* The list */
+  .top { padding-top: 2rem; padding-bottom: .5rem; }
+  .top h1 { margin: 0; font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.1; }
+  .top h1 small { display: block; font-size: 1.05rem; font-weight: 400; color: var(--ink-soft); }
+  .hello { margin: .8rem 0 0; color: var(--ink-soft); }
+  .searchbar { position: sticky; top: 0; z-index: 2; padding: .7rem 0; background: var(--paper); }
+  #q { width: 100%; padding: .7rem 1rem; border: 2px solid var(--line); border-radius: 999px; background: var(--card); font-size: 1.1rem; }
+  #q:focus { border-color: var(--chord); outline: 0; }
+  .count { margin: 0 0 .3rem; font-size: .95rem; color: var(--ink-soft); }
+  #list { list-style: none; margin: 0; padding: 0 0 3rem; }
+  #list .letter { margin: 1.1rem 0 .2rem; font-weight: 700; color: var(--chord); }
+  #list a { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .7rem .2rem; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; font-size: 1.15rem; }
+  #list a:hover b { text-decoration: underline; }
+  #list a b { font-weight: 400; }
+  #list a span { flex: none; font-size: .95rem; color: var(--ink-soft); }
+  .none { padding: 2rem 0; color: var(--ink-soft); }
+
+  .install { padding: .4rem 0 0; }
+  .install-btn { width: 100%; padding: .6rem 1rem; border: 2px solid var(--line); border-radius: 12px; background: var(--card); text-align: left; cursor: pointer; font-weight: 700; }
+  .install-btn small { display: block; font-weight: 400; color: var(--ink-soft); }
+  .install-how { margin: .5rem 0 0; }
+  .install-how svg { vertical-align: -3px; }
+
+  /* A song */
+  .bar { position: sticky; top: 0; z-index: 2; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .5rem; padding-top: .5rem; padding-bottom: .5rem; }
+  .btn { min-width: 2.6rem; min-height: 2.6rem; padding: 0 .7rem; border: 2px solid var(--line); border-radius: 10px; background: var(--card); cursor: pointer; text-decoration: none; color: var(--ink); display: inline-grid; place-items: center; }
+  .btn:hover { border-color: var(--chord); }
+  .btn[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .group { display: inline-flex; align-items: center; gap: .3rem; }
+  .group output { min-width: 3.2rem; text-align: center; font-weight: 700; }
+  .bar select { min-height: 2.6rem; padding: 0 .5rem; border: 2px solid var(--line); border-radius: 10px; background: var(--card); min-width: 0; }
+  @media (max-width: 640px) { .second { flex-basis: 100%; } .second select { flex: 1; } }
+  .spacer { flex: 1; }
+  .song-head { padding: 1.4rem 0 .2rem; }
+  .song-head h1 { margin: 0; font-size: clamp(1.7rem, 6vw, 2.3rem); line-height: 1.15; }
+  .facts { margin: .3rem 0 0; color: var(--ink-soft); }
+  .facts b { color: var(--ink); }
+  .links { margin: .5rem 0 0; }
+  audio { display: block; width: 100%; margin: .8rem 0 0; }
+
+  #song { padding: .6rem 0 1rem; font-size: var(--size); }
+  .sec { margin: 1.3rem 0 0; }
+  .sec h2 { margin: 0 0 .2rem; font-size: .8em; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+  .line { display: flex; flex-wrap: wrap; align-items: flex-end; margin: .15em 0; }
+  .word { display: inline-flex; align-items: flex-end; }
+  .seg { display: inline-flex; flex-direction: column; }
+  .ch { min-height: 1.3em; padding-right: .45em; font-weight: 700; line-height: 1.3; color: var(--chord); white-space: nowrap; }
+  .ly { white-space: pre; line-height: 1.35; }
+  .chord-only { margin: .55em 0 -.1em; }
+  .chord-only .ch { min-height: 0; padding-right: .9em; }
+  .chord-only .between { font-weight: 400; color: var(--ink-soft); }
+  .stretched .ly::after { content: "-"; }
+  .remark { margin: .2em 0; font-size: .85em; font-style: italic; color: var(--ink-soft); }
+  body.no-chords .ch, body.no-chords .chord-only { display: none; }
+
+  details { margin: 1.5rem 0 0; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+  summary { padding: .8rem 1rem; font-weight: 700; cursor: pointer; }
+  details div { padding: 0 1rem 1rem; white-space: pre-wrap; }
+  .foot { padding: 2rem 0 3rem; display: flex; justify-content: space-between; gap: 1rem; }
+  .foot a { color: var(--ink); max-width: 48%; }
+
+  @media print {
+    .bar, .foot, audio, .links { display: none !important; }
+    body { background: #fff; color: #000; }
+    details div { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<div id="home">
+  <header class="wrap top">
+    <h1>Mantra Collection <small>Nik &amp; Friends</small></h1>
+    <p class="hello">Mantras and songs that came to me through singing circles, concerts and inspiration. Enjoy ☀️💚
+      <a href="https://linktr.ee/nikschreiner">Get in contact</a></p>
+    <!-- Shown only where it helps: Android/Chrome (one tap installs) and iPhone/iPad Safari (tap shows the two steps) -->
+    <section class="install" id="install" hidden aria-label="Add to home screen">
+      <button class="install-btn" id="installBtn" type="button">Add the collection to your home screen<small>It opens like an app and works without signal.</small></button>
+      <p class="install-how" id="installHow" hidden>On iPhone or iPad: tap the Share button
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 11v9h12v-9"/></svg>
+        then <b>Add to Home Screen</b>.</p>
+    </section>
+  </header>
+  <div class="searchbar"><div class="wrap">
+    <input id="q" type="search" placeholder="Search titles and words" aria-label="Search titles and words" autocomplete="off" autocapitalize="off" spellcheck="false">
+  </div></div>
+  <main class="wrap">
+    <p class="count" id="count" aria-live="polite"></p>
+    <ul id="list"></ul>
+  </main>
+</div>
+
+<div id="page" hidden>
+  <div class="bar"><div class="wrap">
+    <a class="btn" href="#" aria-label="Back to all songs">←</a>
+    <span class="group" id="keyGroup">
+      <button class="btn" id="keyDown" aria-label="Transpose down a half step">−</button>
+      <output id="keyOut" aria-label="Key"></output>
+      <button class="btn" id="keyUp" aria-label="Transpose up a half step">+</button>
+    </span>
+    <span class="spacer"></span>
+    <span class="group">
+      <button class="btn" id="smaller" aria-label="Smaller text">A−</button>
+      <button class="btn" id="bigger" aria-label="Bigger text">A+</button>
+    </span>
+    <span class="group second">
+      <select id="capoPick" aria-label="Capo"></select>
+      <button class="btn" id="chordsBtn" aria-pressed="true">Chords</button>
+    </span>
+  </div></div>
+  <article class="wrap">
+    <header class="song-head">
+      <h1 id="title"></h1>
+      <p class="facts" id="facts"></p>
+      <p class="links" id="links" hidden></p>
+      <audio id="audio" controls preload="none" hidden></audio>
+    </header>
+    <div id="song"></div>
+    <div id="texts"></div>
+    <nav class="foot" id="foot" aria-label="Next and previous song"></nav>
+  </article>
+</div>
+
+<script src="songs.js"></script>
+<script src="app.js"></script>
+<script>
+/* Offline: the first visit saves the whole collection on the phone, so it opens without signal */
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) navigator.serviceWorker.register('sw.js').catch(() => {});
+</script>
+</body>
+</html>

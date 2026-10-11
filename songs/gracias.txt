@@ -1,0 +1,12 @@
+title: Gracias
+key: Am
+capo: 2
+% key guessed from the first chord
+% audio still in Notion: Gracias.mp3
+
+[Am]Pachamama, [G]padre [Am]sol
+[Am]Gracias [C]por [G]la [Am]vida, gracias por el amor
+[Dm]amor [C]amor [G]amor [Am]amor amor
+[Dm]amor [C]amor [G]amor
+[Am]gracias [G]por la vida
+[Am]gracias [G]por el amor

@@ -1,0 +1,9 @@
+title: Wir wachen auf - Philipp Richter
+key: C#m
+% key guessed from the first chord
+% check: two keys in the source (like Dm/Em); the first one was kept
+
+[C#m]Wir wachen auf und sehn die Welt mit neuen [B]Augen
+in Liebe und Licht und als [A2sus4]das was sie wirklich [B/E]ist
+[C#m]wir wachen auf und lernen wieder mit dem [B]Herzen zu schaun
+und erkennen wer wir wirklich [A2sus4]sind wer wir wirklich [B/E]sind

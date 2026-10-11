@@ -1,0 +1,6 @@
+title: Neu geborn (music: suyana, text: reinheart)
+key: G
+% key guessed from the first chord
+
+[Gsus2]i bin achtsam mit mir [Am7]selbst     i lieb mi   [C9]i bin a kind   [Gsus4]des universums
+[Am7]neu [C9]geborn 	in jeden [Gsus4]moment 		neu [Am7]ge[C9]born     in [Gsus4]jeden moment

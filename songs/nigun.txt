@@ -1,0 +1,11 @@
+title: Nigun
+key: Am
+link: youtube.com | https://www.youtube.com/watch?v=HwArj8wXR9A
+% key guessed from the first chord
+% image still in Notion: 1000033494.png
+
+Strophe
+[Am] [Em] [Am] [Em] [Am] [Em] [Dm] [Am] [Em] [Dm]
+“Refrain”
+[C] [G] [C] [Dm] [C]
+Schluss mit Am dann Em
