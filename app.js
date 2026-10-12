@@ -246,6 +246,20 @@ addEventListener('hashchange', route);
 renderList();
 route();
 
+/* The QR code: small in the header, large in a sheet, with the link to copy or pass on */
+(() => {
+  const sheet = document.getElementById('share'), link = 'https://music.nikschreiner.de';
+  const copy = document.getElementById('shareCopy'), send = document.getElementById('shareSend');
+  document.getElementById('qrBtn').onclick = () => { copy.textContent = 'Copy link'; sheet.showModal(); };
+  document.getElementById('shareDone').onclick = () => sheet.close();
+  sheet.addEventListener('click', e => {   // a click beside the sheet closes it
+    const r = sheet.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) sheet.close();
+  });
+  copy.onclick = async () => { try { await navigator.clipboard.writeText(link); copy.textContent = 'Copied'; } catch (e) { copy.textContent = 'Could not copy'; } };
+  if (navigator.share) { send.hidden = false; send.onclick = () => navigator.share({ title: 'Mantra Collection | Nik & Friends', url: link }).catch(() => {}); }
+})();
+
 /* "Add to home screen": one tap on Android/Chrome; on iPhone Safari there's no button for it, so show the two steps.
    Hidden when the collection is already open from the home screen, and in browsers that can't do either. */
 (() => {

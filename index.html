@@ -92,7 +92,21 @@
   .top { padding-top: 2rem; padding-bottom: .5rem; }
   .top h1 { margin: 0; font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.1; letter-spacing: -.01em; }
   .top h1 small { display: block; font-size: 1.05rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); }
+  .top-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+  .qr-btn { flex: none; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 9px; background: #fff; box-shadow: var(--control-edge); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .qr-btn svg { display: block; width: 100%; height: 100%; }
+  .qr-btn:active { transform: scale(.96); }
   .hello { margin: .8rem 0 0; color: var(--ink-soft); }
+
+  /* The sheet with the large QR code */
+  dialog { width: min(22rem, calc(100vw - 2rem)); padding: 1.2rem 1.2rem 1rem; border: 0; border-radius: 14px; background: var(--window); color: var(--ink); text-align: center;
+    box-shadow: 0 0 0 .5px var(--line), 0 20px 60px rgba(0, 0, 0, .35); }
+  dialog::backdrop { background: rgba(0, 0, 0, .35); }
+  dialog h2 { margin: 0 0 .8rem; font: 600 15px/1.3 var(--ui); }
+  dialog p { margin: .7rem 0 1rem; font: 400 15px/1.3 var(--ui); }
+  .qr-big { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 0 0 .5px var(--line); }
+  .sheet-btns { display: flex; justify-content: flex-end; gap: 8px; }
+  .sheet-btns .btn { padding: 0 1em; }
   .searchbar { position: sticky; top: 0; z-index: 2; padding: .6rem 0; background: var(--bar); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: .5px solid var(--line); }
   .search { position: relative; display: block; }
   .search svg { position: absolute; left: 9px; top: 50%; width: 15px; height: 15px; transform: translateY(-50%); color: var(--ink-soft); pointer-events: none; }
@@ -177,8 +191,13 @@
 <body>
 
 <div id="home">
+  <!-- The QR code for https://music.nikschreiner.de, drawn once and shown small in the header and large in the sheet -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="qr" viewBox="-3 -3 35 35"><rect x="-3" y="-3" width="35" height="35" rx="2" fill="#fff"/><path fill="#000" d="M0 0h7v1h-7zM8 0h1v1h-1zM11 0h1v1h-1zM13 0h1v1h-1zM15 0h1v1h-1zM18 0h3v1h-3zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h1v1h-1zM12 1h7v1h-7zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h1v1h-1zM11 2h1v1h-1zM13 2h1v1h-1zM15 2h2v1h-2zM19 2h2v1h-2zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h1v1h-1zM11 3h2v1h-2zM15 3h1v1h-1zM17 3h1v1h-1zM19 3h2v1h-2zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h2v1h-2zM11 4h1v1h-1zM18 4h3v1h-3zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h2v1h-2zM11 5h1v1h-1zM13 5h4v1h-4zM20 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM10 7h1v1h-1zM12 7h1v1h-1zM15 7h1v1h-1zM18 7h1v1h-1zM20 7h1v1h-1zM1 8h7v1h-7zM11 8h1v1h-1zM14 8h2v1h-2zM17 8h1v1h-1zM23 8h2v1h-2zM28 8h1v1h-1zM1 9h1v1h-1zM3 9h1v1h-1zM8 9h5v1h-5zM14 9h1v1h-1zM16 9h4v1h-4zM21 9h4v1h-4zM28 9h1v1h-1zM2 10h1v1h-1zM6 10h1v1h-1zM8 10h1v1h-1zM10 10h2v1h-2zM13 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM21 10h6v1h-6zM1 11h1v1h-1zM3 11h1v1h-1zM7 11h3v1h-3zM13 11h3v1h-3zM19 11h1v1h-1zM21 11h5v1h-5zM27 11h1v1h-1zM4 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM13 12h1v1h-1zM16 12h2v1h-2zM20 12h2v1h-2zM23 12h1v1h-1zM26 12h3v1h-3zM0 13h1v1h-1zM7 13h1v1h-1zM10 13h6v1h-6zM18 13h5v1h-5zM24 13h2v1h-2zM28 13h1v1h-1zM0 14h1v1h-1zM2 14h8v1h-8zM11 14h6v1h-6zM20 14h4v1h-4zM2 15h1v1h-1zM5 15h1v1h-1zM7 15h1v1h-1zM11 15h1v1h-1zM13 15h2v1h-2zM16 15h1v1h-1zM20 15h1v1h-1zM24 15h2v1h-2zM28 15h1v1h-1zM3 16h1v1h-1zM6 16h3v1h-3zM10 16h2v1h-2zM15 16h2v1h-2zM18 16h3v1h-3zM25 16h4v1h-4zM0 17h1v1h-1zM2 17h1v1h-1zM4 17h2v1h-2zM10 17h1v1h-1zM13 17h3v1h-3zM18 17h7v1h-7zM27 17h2v1h-2zM0 18h1v1h-1zM3 18h1v1h-1zM6 18h1v1h-1zM11 18h1v1h-1zM15 18h4v1h-4zM20 18h1v1h-1zM22 18h1v1h-1zM25 18h2v1h-2zM0 19h1v1h-1zM2 19h2v1h-2zM8 19h5v1h-5zM14 19h2v1h-2zM20 19h1v1h-1zM22 19h1v1h-1zM24 19h2v1h-2zM0 20h1v1h-1zM4 20h1v1h-1zM6 20h3v1h-3zM14 20h2v1h-2zM17 20h2v1h-2zM20 20h5v1h-5zM26 20h1v1h-1zM28 20h1v1h-1zM8 21h1v1h-1zM10 21h3v1h-3zM16 21h1v1h-1zM18 21h1v1h-1zM20 21h1v1h-1zM24 21h2v1h-2zM27 21h2v1h-2zM0 22h7v1h-7zM8 22h1v1h-1zM15 22h1v1h-1zM18 22h3v1h-3zM22 22h1v1h-1zM24 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h4v1h-4zM13 23h2v1h-2zM16 23h1v1h-1zM18 23h3v1h-3zM24 23h2v1h-2zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM8 24h2v1h-2zM12 24h2v1h-2zM18 24h1v1h-1zM20 24h9v1h-9zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM8 25h2v1h-2zM11 25h2v1h-2zM14 25h8v1h-8zM23 25h1v1h-1zM26 25h1v1h-1zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM12 26h3v1h-3zM17 26h1v1h-1zM19 26h6v1h-6zM27 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h3v1h-3zM13 27h2v1h-2zM16 27h1v1h-1zM18 27h1v1h-1zM20 27h1v1h-1zM22 27h1v1h-1zM24 27h2v1h-2zM27 27h1v1h-1zM0 28h7v1h-7zM9 28h6v1h-6zM17 28h1v1h-1zM19 28h1v1h-1zM21 28h2v1h-2zM24 28h3v1h-3z"/></symbol></svg>
   <header class="wrap top">
-    <h1>Mantra Collection <small>Nik &amp; Friends</small></h1>
+    <div class="top-row">
+      <h1>Mantra Collection <small>Nik &amp; Friends</small></h1>
+      <button class="qr-btn" id="qrBtn" type="button" aria-label="Show the QR code to share this collection"><svg viewBox="0 0 35 35" aria-hidden="true"><use href="#qr" x="0" y="0" width="35" height="35"/></svg></button>
+    </div>
     <p class="hello">Mantras and songs that came to me through singing circles, concerts and inspiration. Enjoy ☀️💚
       <a href="https://linktr.ee/nikschreiner">Get in contact</a></p>
     <!-- Shown only where it helps: Android/Chrome (one tap installs) and iPhone/iPad Safari (tap shows the two steps) -->
@@ -200,6 +219,17 @@
     <ul id="list"></ul>
   </main>
 </div>
+
+<dialog id="share" aria-labelledby="shareTitle">
+  <h2 id="shareTitle">Share the collection</h2>
+  <svg class="qr-big" viewBox="0 0 35 35" role="img" aria-label="QR code for music.nikschreiner.de"><use href="#qr" x="0" y="0" width="35" height="35"/></svg>
+  <p><a href="https://music.nikschreiner.de">music.nikschreiner.de</a></p>
+  <div class="sheet-btns">
+    <button class="btn" id="shareCopy" type="button">Copy link</button>
+    <button class="btn" id="shareSend" type="button" hidden>Share…</button>
+    <button class="btn primary" id="shareDone" type="button">Done</button>
+  </div>
+</dialog>
 
 <div id="page" hidden>
   <div class="bar"><div class="wrap">
