@@ -119,7 +119,8 @@
   .install-how svg { vertical-align: -3px; }
 
   /* A song */
-  .bar { position: sticky; top: 0; z-index: 2; background: var(--bar); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: .5px solid var(--line); }
+  /* not pinned: while playing, the whole screen belongs to the song */
+  .bar { background: var(--bar); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: .5px solid var(--line); }
   .bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding-top: 8px; padding-bottom: 8px; }
   .back svg { width: 17px; height: 17px; }
   .spacer { flex: 1; }
