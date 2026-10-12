@@ -12,12 +12,12 @@ chords are spaced out, each one is moved into the lyric line as [C] at the word 
 That position is an estimate: read every imported song once. Where the chords are just listed ("Em Bm G A"),
 there is nothing to estimate from, so they stay as a row of their own above the words.
 """
-import json, re, sys, unicodedata, urllib.request
+import json, os, re, sys, unicodedata, urllib.request
 from pathlib import Path
 
 PAGE = '8fc8b761-febd-4ab6-a904-1c72eaaa3cf7'
 API = 'https://nikschreiner.notion.site/api/v3/loadPageChunk'
-OUT = Path(__file__).resolve().parent.parent / 'songs'
+OUT = Path(os.environ.get('SONGBOOK_OUT') or Path(__file__).resolve().parent.parent / 'songs')
 
 CHORD = re.compile(r'^\(?[A-Ha-h](?:is|es)?[#b♯♭]?(?:maj|min|dim|aug|sus|add|m|M|\+|°|ø|\d|[#b+-]\d)*(?:/[A-Ha-h](?:is|es)?[#b♯♭]?)?\)?$')
 PARTS = re.compile(r'^(\(?)([A-Ha-h])(is|es)?([#b♯♭]?)(.*?)(?:/([A-Ha-h])(is|es)?([#b♯♭]?))?(\)?)$')
@@ -26,6 +26,8 @@ VOWELS = set('aeiouyäöüáéíóúàèìòùâêîôû')
 
 
 def fetch():
+    if os.environ.get('SONGBOOK_BLOCKS'):   # a saved copy of the page, for repeatable runs
+        return json.load(open(os.environ['SONGBOOK_BLOCKS']))
     blocks, cursor, n = {}, {'stack': []}, 0
     while True:
         body = json.dumps({'pageId': PAGE, 'limit': 100, 'cursor': cursor, 'chunkNumber': n, 'verticalColumns': False}).encode()
@@ -110,11 +112,26 @@ def one_key(line, gap):
     return PAIR.sub(lambda m: m.group(1).ljust(len(m.group())), line), True
 
 
+FIXED_WIDTH = set()   # titles of songs whose chords were lined up in a fixed-width font (pasted from a chord site)
+MEASURED = {}   # line -> where each character starts, in em, as a browser lays the line out
+
+
+def starts(line):
+    """Where each character of a line starts, in em: measured in Notion's own font if we have it (tabs and all),
+    else estimated."""
+    if line in MEASURED: return MEASURED[line]
+    out, x = [], 0
+    for c in line + ' ':
+        out.append(x); x += width(c)
+    return out
+
+
 def width(s):
     """Rough width of text in Notion's font, in em. Spaces are narrow, which is why counting characters fails."""
     w = 0
     for c in s:
-        if c == ' ': w += .28
+        if c == '\t': w += 1.12
+        elif c == ' ': w += .28
         elif c in "iljtfrI.,'’:;!|-()": w += .32
         elif c in 'mwMW': w += .85
         elif c.isupper(): w += .68
@@ -153,25 +170,24 @@ def merge_mono(chords, lyric):
     return out + ''.join(f' [{c}]' for c in tail)
 
 
-def merge(chords, lyric):
+def merge(chords, lyric, raw=None):
+    """Move each chord of a chord line into the lyric line under it, as [C] before the word or syllable it stands over.
+    raw is the chord line as it stands on the page, when chords is a tidied copy with the same columns."""
     lyric = lyric.rstrip()
-    found = [(width(chords[:m.start()]), norm_chord(m.group().rstrip('.,'))) for m in re.finditer(r'\S+', chords) if CHORD.match(m.group().rstrip('.,'))]
-    words = [(m.start(), m.group()) for m in re.finditer(r'\S+', lyric)]
-    spots, tail, last = {}, [], -1
-    for x, ch in found:
-        if not words or x > width(lyric) + .6:
+    cx, lx = starts(raw if raw is not None and len(raw) >= len(chords.rstrip()) else chords), starts(lyric)
+    spots = [(lx[w.start()], w.start(), 0) for w in re.finditer(r'\S+', lyric)]
+    # chords were set by eye, a word more or less: a word start wins unless the chord clearly sits inside the word
+    spots += [(lx[w.start() + i], w.start() + i, 1.0) for w in re.finditer(r'\S+', lyric) for i in syllable_starts(w.group())]
+    put, tail, last = {}, [], -1
+    for m in re.finditer(r'\S+', chords):
+        tok = m.group().rstrip('.,')
+        if not CHORD.match(tok): continue
+        x, ch = cx[m.start()], norm_chord(tok)
+        free = [(abs(sx - x) + fee, p) for sx, p, fee in spots if p > last]
+        if tail or not free or x > lx[len(lyric)] + .6:   # past the end of the words: this chord and all after it
             tail.append(ch); continue
-        wi = min(range(len(words)), key=lambda i: abs(width(lyric[:words[i][0]]) - x))
-        pos = words[wi][0]
-        if pos <= last:   # that word already has a chord: look inside it, then at the next word
-            inner = [words[wi][0] + i for i in syllable_starts(words[wi][1]) if words[wi][0] + i > last]
-            inner = [p for p in inner if abs(width(lyric[:p]) - x) < 1.2]
-            later = [p for p, _ in words if p > last]
-            pos = min(inner, key=lambda p: abs(width(lyric[:p]) - x)) if inner else (later[0] if later else None)
-        if pos is None:
-            tail.append(ch); continue
-        spots[pos] = ch; last = pos
-    out = ''.join((f'[{spots[i]}]' if i in spots else '') + c for i, c in enumerate(lyric))
+        last = min(free)[1]; put[last] = ch
+    out = ''.join((f'[{put[i]}]' if i in put else '') + c for i, c in enumerate(lyric)).strip()
     return out + ''.join(f' [{c}]' for c in tail)
 
 
@@ -204,7 +220,7 @@ def convert(title, body, blocks):
 
     for b in body:
         walk(b)
-    return sheet(head, lines, texts, todo)
+    return sheet(head, lines, texts, todo, mono=title in FIXED_WIDTH)
 
 
 def sheet(head, lines, texts=(), todo=None, mono=False):
@@ -214,7 +230,7 @@ def sheet(head, lines, texts=(), todo=None, mono=False):
     lead = next((ps[0] for ps in map(pairs_of, lines) if ps and sure(ps)), None)   # the song's first sure pair, if it has two keys
     gap = (pc(lead[2]) - pc(lead[0])) % 12 if lead else None
     while i < len(lines):
-        line = lines[i].replace('\t', '    ').rstrip(); i += 1
+        line = raw = lines[i].rstrip(); i += 1
         if re.fullmatch(r'\s*[A-G]{2,4}(\s+[A-G]{2,4})*', line):   # "GDA": chords written without spaces
             line = ' '.join(line.replace(' ', ''))
         cap = re.match(r'^\s*cap(?:o)?\.?\s*([IVX]+|\d+)\s*$', line, re.I)
@@ -235,7 +251,7 @@ def sheet(head, lines, texts=(), todo=None, mono=False):
             spaced = mono or len(probe.split()) == 1 or re.search(r'\S\s{2,}\S', probe) or probe.startswith(' ')
             plain = all(CHORD.match(t.rstrip('.,')) for t in probe.split())
             if nxt.strip() and not is_chord_line(nxt) and spaced and plain:
-                out.append((merge_mono if mono else merge)(probe, nxt)); i += 1
+                out.append(merge_mono(probe, nxt) if mono else merge(probe, nxt, raw)); i += 1
             else:
                 out.append(chord_row(probe))
                 if not plain: out.append('% check: this chord row was not a plain list of chords')
@@ -261,6 +277,8 @@ def sheet(head, lines, texts=(), todo=None, mono=False):
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
     flags = {a for a in sys.argv[1:] if a.startswith('--')}
+    if os.environ.get('SONGBOOK_MEASURED'):
+        MEASURED.update(json.load(open(os.environ['SONGBOOK_MEASURED'])))
     blocks = fetch()
     songs, cur = [], None
     for bid in blocks[PAGE]['content']:
