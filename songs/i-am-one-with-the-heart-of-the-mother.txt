@@ -3,6 +3,8 @@ key: Em
 % key guessed from the first chord
 audio: audio/i-am-one-with-the-heart-of-the-mother.mp3 | I am one with heart of the mother
 
+> The two parts can be sung at the same time.
+
 # Part 1
 [Em]I am one with the [Am]heart of the mother
 [D]I am one with the [G]heart of love
@@ -10,5 +12,4 @@ audio: audio/i-am-one-with-the-heart-of-the-mother.mp3 | I am one with heart of 
 [D]I am one with [B]God
 
 # Part 2
-> The two parts can be sung at the same time.
 [Em]Aaa[Am]aave [D]Mariii[G]iiia, [Em]Kyyyy[Am]rie [D]Elee[B]ison

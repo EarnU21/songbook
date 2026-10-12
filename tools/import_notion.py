@@ -195,7 +195,8 @@ def chord_row(line):
     return ' '.join(f'[{norm_chord(t.rstrip(".,"))}]' if CHORD.match(t.rstrip('.,')) else t for t in line.split())
 
 
-def convert(title, body, blocks):
+def source(title, body, blocks):
+    """A song as it stands on the page: header fields, its lines, folded-up texts, and remarks about media."""
     head, lines, texts, todo = {'title': title.strip()}, [], [], []
 
     def walk(b):
@@ -220,7 +221,11 @@ def convert(title, body, blocks):
 
     for b in body:
         walk(b)
-    return sheet(head, lines, texts, todo, mono=title in FIXED_WIDTH)
+    return head, lines, texts, todo
+
+
+def convert(title, body, blocks):
+    return sheet(*source(title, body, blocks), mono=title in FIXED_WIDTH)
 
 
 def sheet(head, lines, texts=(), todo=None, mono=False):
@@ -274,12 +279,8 @@ def sheet(head, lines, texts=(), todo=None, mono=False):
     return txt
 
 
-def main():
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    flags = {a for a in sys.argv[1:] if a.startswith('--')}
-    if os.environ.get('SONGBOOK_MEASURED'):
-        MEASURED.update(json.load(open(os.environ['SONGBOOK_MEASURED'])))
-    blocks = fetch()
+def songs_on_page(blocks):
+    """(title, blocks) for every song: a song starts at each big heading."""
     songs, cur = [], None
     for bid in blocks[PAGE]['content']:
         b = blocks.get(bid)
@@ -288,6 +289,16 @@ def main():
             cur = (title_of(b), []); songs.append(cur)
         elif cur:
             cur[1].append(b)
+    return songs
+
+
+def main():
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    flags = {a for a in sys.argv[1:] if a.startswith('--')}
+    if os.environ.get('SONGBOOK_MEASURED'):
+        MEASURED.update(json.load(open(os.environ['SONGBOOK_MEASURED'])))
+    blocks = fetch()
+    songs = songs_on_page(blocks)
     if '--list' in flags:
         print('\n'.join(t for t, _ in songs)); return
     want = {a.lower() for a in args}

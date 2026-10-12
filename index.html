@@ -15,97 +15,156 @@
 <meta name="apple-mobile-web-app-title" content="Mantras">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#f6f1e6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#181714" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f6f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#282828" media="(prefers-color-scheme: dark)">
 <style>
+  /* Controls look and behave like macOS: system font, quiet grey surfaces, one accent colour (the chord green). */
   :root {
-    --paper: #f6f1e6;
-    --card: #fffdf8;
-    --ink: #22201c;
-    --ink-soft: #625b50;
-    --line: #d9d0bf;
+    --window: #ffffff;
+    --bar: rgba(246, 246, 246, .82);
+    --ink: #1d1d1f;
+    --ink-soft: #6e6e73;
+    --line: rgba(0, 0, 0, .1);
+    --control: #ffffff;
+    --control-edge: 0 0 0 .5px rgba(0, 0, 0, .14), 0 .5px 1.5px rgba(0, 0, 0, .16);
+    --well: rgba(0, 0, 0, .055);
+    --hover: rgba(0, 0, 0, .05);
+    --press: rgba(0, 0, 0, .1);
+    --group: rgba(0, 0, 0, .03);
+    --accent: #0f7a66;
     --chord: #0f6b5c;
-    --sun: #e0a526;
+    --ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --body: "Atkinson Hyperlegible", "Helvetica Neue", Arial, sans-serif;
     --size: 1.2rem;
+    --h: 28px;   /* height of a control; taller where a finger does the pressing */
+    color-scheme: light dark;
     box-sizing: border-box;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
+  @media (pointer: coarse) { :root { --h: 38px; } }
   @media (prefers-color-scheme: dark) {
-    :root { --paper: #181714; --card: #22201c; --ink: #ece6d8; --ink-soft: #a89f90; --line: #3a362f; --chord: #6fd0b8; }
+    :root { --window: #1e1e1e; --bar: rgba(40, 40, 40, .8); --ink: #f5f5f7; --ink-soft: #a1a1a6; --line: rgba(255, 255, 255, .13);
+      --control: #636366; --control-edge: 0 0 0 .5px rgba(0, 0, 0, .4), 0 .5px 1px rgba(0, 0, 0, .3), inset 0 .5px 0 rgba(255, 255, 255, .12);
+      --well: rgba(255, 255, 255, .09); --hover: rgba(255, 255, 255, .07); --press: rgba(255, 255, 255, .14); --group: rgba(255, 255, 255, .05);
+      --accent: #2bb39a; --chord: #6fd0b8; }
   }
   *, *::before, *::after { box-sizing: inherit; }
-  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.5; }
+  body { margin: 0; background: var(--window); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.5; -webkit-font-smoothing: antialiased; }
   [hidden] { display: none !important; }
-  button, select, input { font: inherit; color: inherit; }
-  a { color: var(--chord); }
-  :focus-visible { outline: 3px solid var(--chord); outline-offset: 2px; }
+  button, select, input { font: inherit; color: inherit; margin: 0; }
+  a { color: var(--accent); }
+  :focus-visible { outline: 3.5px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 1px; }
   .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1rem; }
+
+  /* Push button, and the parts of a segmented control */
+  .btn { display: inline-grid; place-items: center; min-width: calc(var(--h) + 6px); height: var(--h); padding: 0 .7em; border: 0; border-radius: 6px;
+    background: var(--control); box-shadow: var(--control-edge); color: var(--ink); font: 500 13px/1 var(--ui); text-decoration: none; cursor: default; -webkit-tap-highlight-color: transparent; user-select: none; }
+  .btn:active { background: color-mix(in srgb, var(--control) 88%, #000); }
+  .btn.plain { background: none; box-shadow: none; }
+  .btn.plain:hover { background: var(--hover); }
+  .btn.plain:active { background: var(--press); }
+  .btn.primary { background: var(--accent); color: #fff; box-shadow: 0 .5px 1.5px rgba(0, 0, 0, .25); }
+  .seg-ctl { display: inline-flex; align-items: center; height: var(--h); padding: 2px; border-radius: 7px; background: var(--well); }
+  .seg-ctl .btn { height: calc(var(--h) - 4px); min-width: calc(var(--h) + 2px); border-radius: 5px; background: none; box-shadow: none; }
+  .seg-ctl .btn:hover { background: var(--hover); }
+  .seg-ctl .btn:active { background: var(--control); box-shadow: var(--control-edge); }
+  .seg-ctl .btn + .btn { margin-left: 1px; }
+  .seg-ctl output { min-width: 3.4em; padding: 0 .3em; text-align: center; font: 600 13px/1 var(--ui); font-variant-numeric: tabular-nums; }
+  .seg-ctl .small-a { font-size: 11px; } .seg-ctl .big-a { font-size: 16px; }
+
+  /* Pop-up button: the menu opens from the coloured cap with the two chevrons */
+  .popup { position: relative; display: inline-flex; min-width: 0; }
+  .popup select { appearance: none; -webkit-appearance: none; height: var(--h); width: 100%; min-width: 0; padding: 0 calc(var(--h) + 2px) 0 .7em; border: 0; border-radius: 6px;
+    background: var(--control); box-shadow: var(--control-edge); font: 500 13px/1 var(--ui); cursor: default; text-overflow: ellipsis; }
+  .popup::after { content: ""; position: absolute; right: 3px; top: 3px; width: calc(var(--h) - 6px); height: calc(var(--h) - 6px); border-radius: 4.5px; pointer-events: none;
+    background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 6.3 8 3.5l3 2.8M5 9.7l3 2.8 3-2.8'/%3E%3C/svg%3E") center / 14px no-repeat; }
+
+  /* Switch */
+  .switch { display: inline-flex; align-items: center; gap: .5em; height: var(--h); padding: 0; border: 0; background: none; font: 500 13px/1 var(--ui); cursor: default; -webkit-tap-highlight-color: transparent; }
+  .switch i { position: relative; flex: none; width: 38px; height: 22px; border-radius: 11px; background: rgba(120, 120, 128, .32); transition: background .15s; }
+  .switch i::after { content: ""; position: absolute; left: 2px; top: 2px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .06), 0 1.5px 3px rgba(0, 0, 0, .25); transition: transform .15s; }
+  .switch[aria-checked="true"] i { background: var(--accent); }
+  .switch[aria-checked="true"] i::after { transform: translateX(16px); }
+  @media (prefers-reduced-motion: reduce) { .switch i, .switch i::after { transition: none; } }
 
   /* The list */
   .top { padding-top: 2rem; padding-bottom: .5rem; }
-  .top h1 { margin: 0; font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.1; }
-  .top h1 small { display: block; font-size: 1.05rem; font-weight: 400; color: var(--ink-soft); }
+  .top h1 { margin: 0; font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.1; letter-spacing: -.01em; }
+  .top h1 small { display: block; font-size: 1.05rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); }
   .hello { margin: .8rem 0 0; color: var(--ink-soft); }
-  .searchbar { position: sticky; top: 0; z-index: 2; padding: .7rem 0; background: var(--paper); }
-  #q { width: 100%; padding: .7rem 1rem; border: 2px solid var(--line); border-radius: 999px; background: var(--card); font-size: 1.1rem; }
-  #q:focus { border-color: var(--chord); outline: 0; }
-  .count { margin: 0 0 .3rem; font-size: .95rem; color: var(--ink-soft); }
+  .searchbar { position: sticky; top: 0; z-index: 2; padding: .6rem 0; background: var(--bar); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: .5px solid var(--line); }
+  .search { position: relative; display: block; }
+  .search svg { position: absolute; left: 9px; top: 50%; width: 15px; height: 15px; transform: translateY(-50%); color: var(--ink-soft); pointer-events: none; }
+  #q { width: 100%; height: calc(var(--h) + 4px); padding: 0 .7em 0 30px; border: 0; border-radius: 8px; background: var(--well); font: 400 15px/1 var(--ui); -webkit-appearance: none; appearance: none; }
+  #q::placeholder { color: var(--ink-soft); }
+  #q:focus { outline: 3.5px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 0; background: var(--control); }
+  .count { margin: .9rem 0 0; font: 400 13px/1.4 var(--ui); color: var(--ink-soft); }
   #list { list-style: none; margin: 0; padding: 0 0 3rem; }
-  #list .letter { margin: 1.1rem 0 .2rem; font-weight: 700; color: var(--chord); }
-  #list a { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .7rem .2rem; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; font-size: 1.15rem; }
-  #list a:hover b { text-decoration: underline; }
+  #list .letter { margin: 1.1rem 0 .15rem; padding: 0 .6rem; font: 600 12px/1.4 var(--ui); color: var(--ink-soft); }
+  #list a { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 -.1rem; padding: .5rem .7rem; border-radius: 8px; color: var(--ink); text-decoration: none; font-size: 1.1rem; -webkit-tap-highlight-color: transparent; }
+  #list li + li a { box-shadow: 0 -.5px 0 var(--line); }
+  #list a:hover { background: var(--hover); box-shadow: none; }
+  #list li:hover + li a { box-shadow: none; }
+  #list a:active { background: var(--accent); color: #fff; }
+  #list a:active span { color: rgba(255, 255, 255, .8); }
   #list a b { font-weight: 400; }
-  #list a span { flex: none; font-size: .95rem; color: var(--ink-soft); }
-  .none { padding: 2rem 0; color: var(--ink-soft); }
+  #list a span { flex: none; font: 400 13px/1.4 var(--ui); color: var(--ink-soft); }
+  .none { padding: 2rem .7rem; color: var(--ink-soft); }
 
-  .install { padding: .4rem 0 0; }
-  .install-btn { width: 100%; padding: .6rem 1rem; border: 2px solid var(--line); border-radius: 12px; background: var(--card); text-align: left; cursor: pointer; font-weight: 700; }
-  .install-btn small { display: block; font-weight: 400; color: var(--ink-soft); }
-  .install-how { margin: .5rem 0 0; }
+  .install { padding: .9rem 0 0; }
+  .install-btn { height: auto; padding: .55em 1em; font-size: 14px; line-height: 1.35; text-align: left; justify-items: start; }
+  .install-btn small { display: block; font-weight: 400; opacity: .85; }
+  .install-how { margin: .5rem 0 0; font: 400 14px/1.4 var(--ui); }
   .install-how svg { vertical-align: -3px; }
 
   /* A song */
-  .bar { position: sticky; top: 0; z-index: 2; background: var(--paper); border-bottom: 1px solid var(--line); }
-  .bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .5rem; padding-top: .5rem; padding-bottom: .5rem; }
-  .btn { min-width: 2.6rem; min-height: 2.6rem; padding: 0 .7rem; border: 2px solid var(--line); border-radius: 10px; background: var(--card); cursor: pointer; text-decoration: none; color: var(--ink); display: inline-grid; place-items: center; }
-  .btn:hover { border-color: var(--chord); }
-  .btn[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-  .group { display: inline-flex; align-items: center; gap: .3rem; }
-  .group output { min-width: 3.2rem; text-align: center; font-weight: 700; }
-  .bar select { min-height: 2.6rem; padding: 0 .5rem; border: 2px solid var(--line); border-radius: 10px; background: var(--card); min-width: 0; }
-  @media (max-width: 640px) { .second { flex-basis: 100%; } .second select { flex: 1; } }
+  .bar { position: sticky; top: 0; z-index: 2; background: var(--bar); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: .5px solid var(--line); }
+  .bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding-top: 8px; padding-bottom: 8px; }
+  .back svg { width: 17px; height: 17px; }
   .spacer { flex: 1; }
+  .second { display: inline-flex; align-items: center; gap: 12px; }
+  @media (max-width: 640px) { .second { flex-basis: 100%; } .second .popup { flex: 1; } }
   .song-head { padding: 1.4rem 0 .2rem; }
-  .song-head h1 { margin: 0; font-size: clamp(1.7rem, 6vw, 2.3rem); line-height: 1.15; }
-  .facts { margin: .3rem 0 0; color: var(--ink-soft); }
-  .facts b { color: var(--ink); }
-  .links { margin: .5rem 0 0; }
+  .song-head h1 { margin: 0; font-size: clamp(1.7rem, 6vw, 2.3rem); line-height: 1.15; letter-spacing: -.01em; }
+  .facts { margin: .35rem 0 0; font: 400 14px/1.45 var(--ui); color: var(--ink-soft); }
+  .facts b { font-weight: 600; color: var(--ink); }
+  .links { margin: .5rem 0 0; font: 400 14px/1.45 var(--ui); }
   #audio figure { margin: .8rem 0 0; }
-  #audio figcaption { font-size: .95rem; color: var(--ink-soft); }
+  #audio figcaption { font: 400 13px/1.45 var(--ui); color: var(--ink-soft); }
   audio { display: block; width: 100%; }
 
   #song { padding: .6rem 0 1rem; font-size: var(--size); }
   .sec { margin: 1.3rem 0 0; }
-  .sec h2 { margin: 0 0 .2rem; font-size: .8em; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+  .sec h2 { margin: 0 0 .25rem; font: 600 12px/1.4 var(--ui); letter-spacing: .02em; text-transform: uppercase; color: var(--ink-soft); }
   .line { display: flex; flex-wrap: wrap; align-items: flex-end; margin: .15em 0; }
   .word { display: inline-flex; align-items: flex-end; }
   .seg { display: inline-flex; flex-direction: column; }
-  .ch { min-height: 1.3em; padding-right: .45em; font-weight: 700; line-height: 1.3; color: var(--chord); white-space: nowrap; }
+  /* A chord takes no room of its own: the words keep their natural spacing, and app.js pushes two chords apart only where they would touch */
+  .ch { width: 0; min-height: 1.3em; font-weight: 700; line-height: 1.3; color: var(--chord); white-space: nowrap; }
+  .ch:empty { min-height: 0; }   /* a wrapped row without chords stays as low as its words */
+  .seg.bare .ch { width: auto; padding-right: .45em; }
   .ly { white-space: pre; line-height: 1.35; }
   .chord-only { margin: .55em 0 -.1em; }
-  .chord-only .ch { min-height: 0; padding-right: .9em; }
+  .chord-only .ch { width: auto; min-height: 0; padding-right: .9em; }
   .chord-only .between { font-weight: 400; color: var(--ink-soft); }
   .stretched .ly::after { content: "-"; }
   .remark { margin: .2em 0; font-size: .85em; font-style: italic; color: var(--ink-soft); }
   body.no-chords .ch, body.no-chords .chord-only { display: none; }
+  body.no-chords .seg { padding-right: 0 !important; min-width: 0 !important; }
 
-  details { margin: 1.5rem 0 0; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
-  summary { padding: .8rem 1rem; font-weight: 700; cursor: pointer; }
-  details div { padding: 0 1rem 1rem; white-space: pre-wrap; }
-  .foot { padding: 2rem 0 3rem; display: flex; justify-content: space-between; gap: 1rem; }
-  .foot a { color: var(--ink); max-width: 48%; }
+  /* Disclosure group */
+  details { margin: 1.5rem 0 0; border-radius: 10px; background: var(--group); box-shadow: inset 0 0 0 .5px var(--line); }
+  summary { display: flex; align-items: center; gap: .5em; padding: .65rem .9rem; font: 600 14px/1.3 var(--ui); cursor: default; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: ""; flex: none; width: 10px; height: 10px; transition: transform .15s;
+    background: currentColor; opacity: .55; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3 1.5 7 5 3 8.5' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3 1.5 7 5 3 8.5' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details div { padding: 0 .9rem .9rem; white-space: pre-wrap; }
+  .foot { padding: 2rem 0 3rem; display: flex; justify-content: space-between; gap: 1rem; font: 400 14px/1.4 var(--ui); }
+  .foot a { max-width: 48%; text-decoration: none; }
+  .foot a:hover { text-decoration: underline; }
 
   @media print {
     .bar, .foot, #audio, .links { display: none !important; }
@@ -123,14 +182,17 @@
       <a href="https://linktr.ee/nikschreiner">Get in contact</a></p>
     <!-- Shown only where it helps: Android/Chrome (one tap installs) and iPhone/iPad Safari (tap shows the two steps) -->
     <section class="install" id="install" hidden aria-label="Add to home screen">
-      <button class="install-btn" id="installBtn" type="button">Add the collection to your home screen<small>It opens like an app and works without signal.</small></button>
+      <button class="btn primary install-btn" id="installBtn" type="button">Add the collection to your home screen<small>It opens like an app and works without signal.</small></button>
       <p class="install-how" id="installHow" hidden>On iPhone or iPad: tap the Share button
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 11v9h12v-9"/></svg>
         then <b>Add to Home Screen</b>.</p>
     </section>
   </header>
   <div class="searchbar"><div class="wrap">
-    <input id="q" type="search" placeholder="Search titles and words" aria-label="Search titles and words" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <label class="search">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="6.8" cy="6.8" r="4.6"/><path d="m10.3 10.3 3.5 3.5"/></svg>
+      <input id="q" type="search" placeholder="Search" aria-label="Search titles and words" autocomplete="off" autocapitalize="off" spellcheck="false">
+    </label>
   </div></div>
   <main class="wrap">
     <p class="count" id="count" aria-live="polite"></p>
@@ -140,20 +202,20 @@
 
 <div id="page" hidden>
   <div class="bar"><div class="wrap">
-    <a class="btn" href="#" aria-label="Back to all songs">←</a>
-    <span class="group" id="keyGroup">
+    <a class="btn plain back" href="#" aria-label="Back to all songs"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2.5 4.5 8l5.5 5.5"/></svg></a>
+    <span class="seg-ctl" id="keyGroup" role="group" aria-label="Key">
       <button class="btn" id="keyDown" aria-label="Transpose down a half step">−</button>
       <output id="keyOut" aria-label="Key"></output>
       <button class="btn" id="keyUp" aria-label="Transpose up a half step">+</button>
     </span>
     <span class="spacer"></span>
-    <span class="group">
-      <button class="btn" id="smaller" aria-label="Smaller text">A−</button>
-      <button class="btn" id="bigger" aria-label="Bigger text">A+</button>
+    <span class="seg-ctl" role="group" aria-label="Text size">
+      <button class="btn small-a" id="smaller" aria-label="Smaller text">A</button>
+      <button class="btn big-a" id="bigger" aria-label="Bigger text">A</button>
     </span>
-    <span class="group second">
-      <select id="capoPick" aria-label="Capo"></select>
-      <button class="btn" id="chordsBtn" aria-pressed="true">Chords</button>
+    <span class="second">
+      <span class="popup" id="capoBox"><select id="capoPick" aria-label="Capo"></select></span>
+      <button class="switch" id="chordsBtn" role="switch" aria-checked="true"><i></i>Chords</button>
     </span>
   </div></div>
   <article class="wrap">

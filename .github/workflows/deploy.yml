@@ -39,7 +39,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir site
-          cp CNAME index.html app.js songs.js sw.js manifest.webmanifest dist/mantra-collection.html site/
+          cp CNAME index.html check.html app.js songs.js sw.js manifest.webmanifest dist/mantra-collection.html site/
           cp -R assets audio site/
           # Sicherheitsnetz: keine Quellen und Werkzeuge auf der Seite
           test ! -d site/tools

@@ -90,13 +90,34 @@ function lineHTML(src) {
   let html = '', open = false;
   pieces.forEach((p, i) => {
     const next = pieces[i + 1], glue = next && /\S$/.test(p.text) && /^\S/.test(next.text);
-    const seg = `<span class="seg">${hasCh ? `<b class="ch">${p.chord ? esc(shown(p.chord)) : ''}</b>` : ''}<span class="ly">${esc(p.text) || ' '}</span></span>`;
+    const seg = `<span class="seg${p.text.trim() ? '' : ' bare'}">${hasCh ? `<b class="ch">${p.chord ? esc(shown(p.chord)) : ''}</b>` : ''}<span class="ly">${esc(p.text) || ' '}</span></span>`;
     if (glue && !open) { html += '<span class="word">'; open = true; }
     html += seg;
     if (!glue && open) { html += '</span>'; open = false; }
   });
   return `<div class="line">${html}</div>`;
 }
+
+/* Chords take no room, so the words keep their natural spacing. Where two chords on one row would touch,
+   the first one's spot is widened just enough; a chord that would stick out past the right edge gets its full width. */
+function spreadChords() {
+  if (!prefs.chords) return;
+  const box = r => { const g = document.createRange(); g.selectNodeContents(r); return g.getBoundingClientRect(); };
+  document.querySelectorAll('#song .line:not(.chord-only)').forEach(line => {
+    const chs = [...line.querySelectorAll('.ch')].filter(c => c.textContent);
+    chs.forEach(c => { c.parentElement.style.paddingRight = ''; c.parentElement.style.minWidth = ''; });
+    const edge = line.getBoundingClientRect().right, gap = parseFloat(getComputedStyle(line).fontSize) * .4;
+    chs.forEach((c, i) => {
+      const a = box(c), next = chs[i + 1], seg = c.parentElement;
+      if (a.right > edge) { seg.style.minWidth = Math.ceil(a.width) + 'px'; return; }
+      if (!next) return;
+      const b = box(next);
+      if (Math.abs(b.top - a.top) < 4 && a.right + gap > b.left) seg.style.paddingRight = Math.ceil(a.right + gap - b.left + parseFloat(getComputedStyle(seg).paddingRight)) + 'px';
+    });
+  });
+}
+addEventListener('resize', () => { spreadChords(); });
+document.fonts && document.fonts.ready.then(() => { spreadChords(); markStretched(); });
 
 /* A word pulled apart by a wide chord (tan - to under "Em G"): show the hyphen, the way chord charts do.
    Only when it's actually pulled apart. */
@@ -105,7 +126,7 @@ function markStretched() {
     sg.classList.remove('stretched');
     if (!prefs.chords) return;
     const r = document.createRange(); r.selectNodeContents(sg.querySelector('.ly'));
-    if (sg.getBoundingClientRect().width - r.getBoundingClientRect().width > 4) sg.classList.add('stretched');
+    if (sg.getBoundingClientRect().width - r.getBoundingClientRect().width > 1.5) sg.classList.add('stretched');
   });
 }
 addEventListener('resize', markStretched);
@@ -116,12 +137,12 @@ function renderSong() {
     `<section class="sec">${sec.caption ? `<h2>${esc(sec.caption)}</h2>` : ''}` +
     sec.lines.map(l => typeof l === 'string' ? lineHTML(l) : `<p class="remark">${esc(l.note)}</p>`).join('') + '</section>').join('')
     || '<p class="remark">The words for this song are not here yet: so far they are a picture, PDF or recording on the Notion page.</p>';
-  markStretched();
+  spreadChords(); markStretched();
 }
 
 function renderKey() {
   const hasKey = !!SONG.key;
-  document.getElementById('keyGroup').hidden = document.getElementById('capoPick').hidden = !hasKey;
+  document.getElementById('keyGroup').hidden = document.getElementById('capoBox').hidden = !hasKey;
   if (!hasKey) { document.getElementById('facts').textContent = SONG.note || ''; return; }
   const sounding = SONG_KEY + (SONG.capo || 0) + state.shift;
   document.getElementById('keyOut').textContent = keyName(sounding);
@@ -176,9 +197,9 @@ function remember() {
 }
 function applyPrefs() {
   document.body.classList.toggle('no-chords', !prefs.chords);
-  document.getElementById('chordsBtn').setAttribute('aria-pressed', prefs.chords);
+  document.getElementById('chordsBtn').setAttribute('aria-checked', prefs.chords);
   document.documentElement.style.setProperty('--size', prefs.size + 'rem');
-  if (SONG) markStretched();
+  if (SONG) { spreadChords(); markStretched(); }
 }
 Object.assign(prefs, store.get('mc-prefs') || {});
 applyPrefs();
