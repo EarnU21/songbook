@@ -1,3 +1,11 @@
 title: Even though I walk (work in progress)
+key: Gm
+note: Music by Salmo – Mauri feat. M.K. Brunvoll (refrain), edited by Andrea
 
+[Gm]Even though I walk through the
+[F5]valley of the shadow of [Cm]death
+> F5 or Fm
+I fear no Evil... I fear no Evil / ´Cos you are with me
 
+=== About the words
+From the bible, Psalm 23, verse 4: „Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me.”

@@ -6,7 +6,7 @@ next to the same song in the songbook. For reading the chord positions against t
 
 The page is a snapshot of Notion at the time it was made. It ticks off songs in the browser it is opened in.
 """
-import html, json, re
+import difflib, html, json, re
 from pathlib import Path
 from import_notion import fetch, is_chord_line, one_key, slug, songs_on_page, source
 
@@ -23,7 +23,8 @@ def main():
     for title, body in songs_on_page(blocks):
         head, lines, texts, todo = source(title, body, blocks)
         t = title.strip()
-        name = by_title.get(t.lower()) or by_title.get(re.sub(r'\s*\+\d+$', '', t).lower()) or slug(t)
+        near = difflib.get_close_matches(t.lower(), list(by_title), n=1, cutoff=.85)   # a title corrected since (Atme de Wind)
+        name = by_title.get(t.lower()) or (by_title[near[0]] if near else slug(t))
         rows = [[1 if is_chord_line(one_key(l.rstrip(), None)[0]) else 0, l.rstrip()] for l in lines]
         while rows and not rows[-1][1]: rows.pop()
         if not (ROOT / 'songs' / (name + '.txt')).exists(): continue

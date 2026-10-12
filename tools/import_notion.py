@@ -39,10 +39,10 @@ def fetch():
         cursor, n = j.get('cursor', {}), n + 1
         if not cursor.get('stack'):
             break
-    # what sits inside a closed toggle ("Meaning") is not part of the page load: ask for it by id
-    for _ in range(3):
-        missing = [c for b in blocks.values() if b.get('type') == 'toggle' or b.get('parent_id') in blocks and blocks[b['parent_id']].get('type') == 'toggle'
-                   for c in b.get('content', []) if c not in blocks]
+    # what sits inside something folded up (a "Meaning" toggle, a heading that folds) is not part of the page load: ask for it by id
+    for _ in range(4):
+        missing = [c for b in blocks.values() if b.get('type') != 'page' or b.get('id') == PAGE
+                   for c in b.get('content') or [] if c not in blocks]
         if not missing: break
         for i in range(0, len(missing), 100):
             body = json.dumps({'requests': [{'pointer': {'table': 'block', 'id': x}, 'version': -1} for x in missing[i:i + 100]]}).encode()
@@ -286,7 +286,8 @@ def songs_on_page(blocks):
         b = blocks.get(bid)
         if not b: continue
         if b.get('type') == 'header':
-            cur = (title_of(b), []); songs.append(cur)
+            # a heading that folds open keeps its song inside itself
+            cur = (title_of(b), [blocks[c] for c in b.get('content') or [] if c in blocks]); songs.append(cur)
         elif cur:
             cur[1].append(b)
     return songs
