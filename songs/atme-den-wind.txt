@@ -1,4 +1,4 @@
-title: Atme de Wind
+title: Atme den Wind
 key: Dm
 % key guessed from the first chord
 
