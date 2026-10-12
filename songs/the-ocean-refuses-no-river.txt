@@ -2,7 +2,7 @@ title: The Ocean refuses no river
 key: Am
 % key guessed from the first chord
 
-[Am] [F] [F] [G]
+[Am] [G] [F] [F]
 The Ocean refuses no river
 [Am] [G] [Em] [Am]
 Ishq Allah ma budlilah il Allah
