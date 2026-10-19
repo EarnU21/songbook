@@ -1,0 +1,15 @@
+title: Jesus Christ, bread of life / Eat this bread
+key: G
+note: Taizé · chords worked out from the four-part setting
+% chords derived from the SATB score on the Taizé page in Notion
+
+[G]Jesus [C]Christ, [Am]bread of [D]life,
+[Bm]those who come to [Em]you will [A7]not [D]hunger.
+[Em]Jesus [D]Christ, [Em]Risen [Bm]Lord,
+[C]those who trust in [D]you will not [G]thirst.
+
+# Or
+[G]Eat this [C]bread, [Am]drink this [D]cup,
+[Bm]come to him and [Em]never [A7]be [D]hungry.
+[Em]Eat this [D]bread, [Em]drink this [Bm]cup,
+[C]trust in him and [D]you will not [G]thirst.

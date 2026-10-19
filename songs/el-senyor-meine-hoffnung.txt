@@ -1,0 +1,20 @@
+title: El Senyor / Meine Hoffnung
+key: F
+note: Taizé · chords worked out from the four-part setting
+% chords derived from the SATB score on the Taizé page in Notion
+> 3/4
+
+[Dm]Mei[C]ne [F]Hoffnung und [F/A]meine [Bb]Freu[C]de, [Dm]mei[C]ne
+[F]Stärke, [Dm]mein [C]Licht, Christus,
+[Bb]meine [A]Zuver[Dm]sicht, auf [C]dich ver-
+[F]trau ich und [Gm]fürcht mich [C]nicht, auf [Am]dich ver-
+[Dm]trau ich und fürcht [C]mich [F]nicht.
+
+=== Catalan and English
+El Senyor és la meva força, el Senyor el meu cant.
+Ell m'ha estat la salvació.
+En ell confio i no tinc por, en ell confio i no tinc por.
+
+In the Lord I'll be ever thankful, in the Lord I will rejoice!
+Look to God, do not be afraid.
+Lift up your voices, the Lord is near. Lift up your voices, the Lord is near.

@@ -1,0 +1,7 @@
+title: Veni Sancte Spiritus
+key: A
+note: Taizé · chords worked out from the four-part setting
+% chords derived from the SATB score on the Taizé page in Notion
+> 6/8
+
+[A]Veni Sancte [Bm/A]Spiritus.

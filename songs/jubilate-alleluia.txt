@@ -1,0 +1,9 @@
+title: Jubilate, Alleluia
+key: F
+note: Taizé · chords worked out from the four-part setting
+% chords derived from the SATB score on the Taizé page in Notion
+
+[F]O___[Dm]___ [C]___[F]___
+[F]Jubila[C/E]te [Dm]De[Am]o [Bb/D]om[Dm]nis [Gm]ter[C]ra!
+[Dm]O___[C/E]___ [F]___[C7]___
+[C]Alle[Bb]lu[Gm]ia, alle[C]lu[F]ia!

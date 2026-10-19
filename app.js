@@ -138,6 +138,7 @@ function renderSong() {
     sec.lines.map(l => typeof l === 'string' ? lineHTML(l) : `<p class="remark">${esc(l.note)}</p>`).join('') + '</section>').join('')
     || '<p class="remark">The words for this song are not here yet: so far they are a picture, PDF or recording on the Notion page.</p>';
   spreadChords(); markStretched();
+  requestAnimationFrame(() => { spreadChords(); markStretched(); });   // again once the page has its final layout
 }
 
 function renderKey() {
