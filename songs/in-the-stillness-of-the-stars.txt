@@ -1,4 +1,13 @@
 title: In the Stillness of the Stars
-% image still in Notion: 1000056522.jpg
+key: G
+% read from the picture on the Notion page
 
+# 2x
+In the [G]stillness of the [D]stars
+[Csus2]lay me [C]down
+> Four beats per chord
 
+[G]Silence is a blessed [D]home
+[G]Underneath this sacred [D]dome
+[C]Silence is a blessed [G]ho - o - [D]o – ome
+> Eight beats per chord; in the last line G and D four beats each
