@@ -1,6 +1,9 @@
 title: Limu Lima Lima
-% file still in Notion: Limu limu lima - S+A.pdf
-% image still in Notion: Untitled
+note: Swedish, for two voices (soprano and alto)
+% read from the sheet on the Notion page
 audio: audio/limu-lima-lima.m4a
 
-
+Limu limu lima, gud låt solen skina.
+Över bergerna blå, över kullorna små,
+som i skogerna gå om somman.
+> The sheet has no chords, only the two voices.

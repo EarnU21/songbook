@@ -1,6 +1,26 @@
 title: Breathing In, Breathing Out
-% file still in Notion: Breathing In, Breathing Out
-% image still in Notion: msg842664789-4349.jpg
+key: C
+note: Plum Village song · Words: Thich Nhat Hanh · Music: Betsy Rose
+% read from the sheet on the Notion page
 audio: audio/breathing-in-breathing-out.m4a
 
+> 3/4, a crotchet = 120
 
+# A
+Breathing [C]in, [C/B]breathing [Am]out,
+breathing [C]in, [C/B]breathing [Am]out.
+I am [Dm]blooming as a [G]flower,
+I am [Dm]fresh as the [C]dew,
+I am [Em]solid as a [Am]mountain,
+I am [Dm]firm as the [G]earth,
+I am [F]free.
+
+# B
+Breathing [C]in, [C/B]breathing [Am]out,
+breathing [C]in, [C/B]breathing [Am]out.
+I am [Dm]water reflect[G]ing
+what is [Dm]real, what is [C]true,
+and I [Em]feel there is [Am]space
+deep in[Dm]side of [G]me.
+I am [C]free, I am [F]free, [G]I am [C]free.
+> Slower at the end

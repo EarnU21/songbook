@@ -1,6 +1,13 @@
 title: We got all the Love
-% file still in Notion: We-Got-All-The-Love-Helen-Yeomans.pdf
-% image still in Notion: Untitled
-% image still in Notion: Untitled
+key: D
+note: Words and music: Helen Yeomans
+% read from the sheet on the Notion page
 
+> A crotchet = 80; the sheet is for four voices
 
+We got all the [D](love) all that we [F#7]need
+to change our [Bm]world, halle[G]luia!
+We got all the [D](love) [Bm]all that we [A]need
+[F#m]blessed [G]be, Mmm mmm
+[D]mmm, we got all the …
+> Repeat from the start; the second time end on D (mmm).
