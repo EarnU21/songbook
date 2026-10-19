@@ -1,0 +1,12 @@
+title: Can you hear the robin?
+key: D
+capo: 2
+note: Robin Song
+> Harmonium: AD AE GE
+
+[D5]Good morning, do [Am7]you [G]hear the [C]robin?
+[C]Long [D5]was she asleep
+[Am7]We are the [G]light in a [C]spring breeze
+[C]Dancing through the [D5]trees
+> Also sung as “Oh brother / sister, do you hear the robin?”
+> G stands for “G/Am7” in the sheet, C for “C inverted”.

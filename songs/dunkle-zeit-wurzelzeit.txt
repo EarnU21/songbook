@@ -1,0 +1,15 @@
+title: Dunkle Zeit, Wurzelzeit
+key: Am
+note: Words and music: Arunga Heiden
+% read from the sheet on the Notion page
+> Erst Aufbau mit Akkorden (Flüstern → Melodie), dann Text.
+
+# Strophe
+[Am]Schwarz [Em]und [Am]dunkel um[Dm]hüllt [F]mich die [E]Nacht,
+[Am]Ru[Em]he um[Am]gibt mich, die [Dm]still [F]mich [E]macht,
+[Am]spür' [Em]meinen [Am]Atem, [Dm]hör' mein [F]Herz [E]schlagen,
+[Am]sprich! [Em]meine [Am]Seele, [Dm]was willst [F]du mir [E]sagen?
+
+# Mantra-Refrain
+[Am]Dun[Em]kle [Am]Zeit, [Dm]Wur[F]zel[E]zeit,
+führst mich nach innen, mich zu besinnen, wer ich bin!

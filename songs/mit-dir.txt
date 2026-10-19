@@ -1,0 +1,8 @@
+title: Mit dir
+key: G
+capo: 2
+note: Ronja
+audio: audio/mit-dir.m4a | Mit dir (für Boris)
+
+[G9]Schau mich [A9]an, ich bin [EM9]da mit [G9]dir
+[G9]Jetzt und [A9]hier, Komm und [EM9]sing mit [G9]mir
