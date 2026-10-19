@@ -1,8 +1,6 @@
 title: Bambole
 key: Bm
 % key guessed from the first chord
-% file still in Notion: Be just the way you are
-audio: audio/bambole.m4a
 
 by Mooji Mala Zmar 2019
 [Bm]Bambole [D]Bambole [A]Bambole [G]Bamboleeee
@@ -12,11 +10,6 @@ by Mooji Mala Zmar 2019
 [Bm]Jai [A]Rama [G]Sita
 [D]Jai [A]Ha[G]numan
 [D]Jai [A]Ha[G]numan
-
-[A#]Be just the way you [D#]are
-[G#]I’m [D#]happy just to [A#]be with you
-[A#]Be just the way you [D#]are
-[G#]I’m [D#]happy just to [A#]be with you
 
 === Meaning
 A joyful shift in energy! After the profound depths of the Pavamana Mantra, this kirtan brings pure celebration and delight — it has the feeling of children dancing in the street.
