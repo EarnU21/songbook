@@ -146,7 +146,9 @@ function renderKey() {
   document.getElementById('keyGroup').hidden = document.getElementById('capoBox').hidden = !hasKey;
   if (!hasKey) { document.getElementById('facts').textContent = SONG.note || ''; return; }
   const sounding = SONG_KEY + (SONG.capo || 0) + state.shift;
-  document.getElementById('keyOut').textContent = keyName(sounding);
+  /* the key, and how many half steps it has been moved: +2 from Am to Bm */
+  document.getElementById('keyOut').innerHTML = esc(keyName(sounding)) +
+    (state.shift ? `<small class="shift">${state.shift > 0 ? '+' : '−'}${Math.abs(state.shift)}</small>` : '');
   /* Capo: each choice is named by the shapes it gives */
   document.getElementById('capoPick').innerHTML = Array.from({ length: 10 }, (_, n) =>
     `<option value="${n}"${n === state.capo ? ' selected' : ''}>${n ? `Capo ${n}: ${keyName(sounding - n)} shapes` : 'No capo'}</option>`).join('');
