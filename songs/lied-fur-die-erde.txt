@@ -1,8 +1,15 @@
-title: Lied für die Erde
-key: Cm
-% key guessed from the first chord
+title: Aye Kerunene – Lied für die Erde
+key: Am
+note: Hagara Feinbier
+% read from Nik's handwritten notebook
 
-Hagara Feinbier
-‣
-[Cm]|: Aye   kerunene   [Bb]keranio   [Gm]keruna [Cm]:|
-|: [Cm]Keranio   weya   heya   [Bb]heyaye      [Cm]Ayee      [Bb]Keruna [Gm]:| [Cm]
+[Am]Aye keru[G]nene, kera[Em]nio,
+keru[Am]na
+[Am]Aye keru[G]nene, kera[Em]nio,
+keru[Am]na
+
+[Am]Keranio, heya, weya, ha[G]ya[Am]ye,
+[G]Aye, o [Em]keru[Am]na
+[Am]Keranio, weya, heya, he[G]ya[Am]ye,
+[G]Aye, o [Em]keru[Am]na
+> In Notion this was written in C minor (Cm, Bb, Gm): the same chords three half steps higher.

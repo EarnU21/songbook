@@ -1,0 +1,14 @@
+title: Hine Ma Tov
+key: G#m
+note: Psalm 133, Hebrew
+% read from Nik's handwritten notebook
+
+# 2x
+[G#m]Hineh ma tov umah [C#m]na___[G#m]im
+[D#]Shevet achim gam [G#m]yachad
+
+# 2x
+[G#m]Hineh [F#]ma [B]tov
+[D#]Shevet achim gam [G#m]yachad
+
+> Harmonium: G#m = D# G# B, C#m = E G# C#, D# = D# G B♭, F# = F# A# C#, B = D# F# B

@@ -3,9 +3,13 @@ key: Dm
 % key guessed from the first chord
 
 [Dm]Govinda Narajana-ah
-[C]Gopala [Am]Naraja[Dm]na
+[C]Gopala Naraja[Dm]na
+> 2x
 [Dm]Govinda Gopala [C]Naraja[Dm]na
-Hare [F]Govinda [C]Gopala [Am]Naraja[Dm]na
+> 2x
+Hare [F]Govinda [C]Gopala
+Na[Am]ra[Dm]jana
+> 2x, at the end 8x
 
 === Meaning
 Overall meaning:

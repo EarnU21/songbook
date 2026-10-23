@@ -1,0 +1,18 @@
+title: Shree Radhe Shyam
+key: Am
+capo: 3
+note: on the harmonium in C minor
+% read from Nik's handwritten notebook
+
+# 2x
+[Am]Shree Radhe Radhe
+Radhe [G]Shyam
+
+Govinda [Am]Radhe
+Shree [Am]Radhe
+[C]Govinda Radhe Radhe
+[G]Shyam Gopala
+Radhe Radhe [Am]Shyam
+[C]Govinda Radhe Radhe
+[G]Shyam Gopala
+Radhe Radhe [Am]Shyam

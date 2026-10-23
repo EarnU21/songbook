@@ -1,0 +1,10 @@
+title: Ad Gure Nameh
+key: A
+% read from Nik's handwritten notebook
+
+[A]Ad [D]Gure [A]Nameh
+[F#m]Jugad [D]Gure [A]Nameh
+[F#m]Sad [D]Gure [A]Nameh
+[F#m]Siri Guru [E]Deve [A]Nameh
+
+> Harmonium: A = A C# E, D = A D F#, F#m = A C# F#, E = B E G#

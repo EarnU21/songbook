@@ -1,0 +1,12 @@
+title: Hare Krishna
+key: C
+% read from Nik's handwritten notebook
+
+[C]Hare Krishna
+[Am]Hare Krishna
+[F]Krishna Krishna
+[G]Hare Hare
+[C]Hare Rama, [Am]Hare Rama
+[F]Rama, Rama, [G]Hare, Hare
+
+> Harmonium: C = C E G, Am = C E A, F = C F A, G = D G B

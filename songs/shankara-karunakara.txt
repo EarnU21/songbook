@@ -6,8 +6,11 @@ audio: audio/shankara-karunakara.mp3 | Shankara
 
 [Bm]Shankara [A]Karunakara
 [G]Jagadeswara [Bm]Parameshvara
+> 2x
 [Bm]Shankara [D]Karunakara
 [A]Jagadeswara [Bm]Parameshvara
+
+> Harmonium: Bm = B D F#, A = A C# E, G = G B D, D = A D F#
 
 === Meaning
 This is a devotional chant to Shiva, one of the principal deities of Hinduism — the destroyer and transformer in the Hindu Trinity.

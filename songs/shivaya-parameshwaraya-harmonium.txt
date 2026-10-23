@@ -1,0 +1,12 @@
+title: Shivaya Parameshwaraya (harmonium)
+key: Am
+% read from Nik's handwritten notebook
+
+[Am]Shivaya Parame[Dm]shwara[Am]ya
+Chandra [Dm]Shekaraya Namah [Am]Om
+[Dm]Bhavaya Bhavaya Guna [Am]Sambhavaya
+Shiva [F]Thandavaya [Am]Namah [C]Om___
+Shiva [F]Thandavaya Namah [Am]Om
+
+> Harmonium: Am = A C E (fingers 2 3 4), Dm = F A D (1 2 4), F = F A C (1 2 3), C = G C E (1 3 4)
+> The same mantra from Notion, in B minor: “Shivaya Paramashvaraya”.
