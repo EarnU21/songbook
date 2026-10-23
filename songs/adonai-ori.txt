@@ -1,9 +1,10 @@
 title: Adonai Ori
 key: Am
-capo: 4
+capo: 2
 note: Psalm 27, Hebrew
 % read from Nik's handwritten page
 
+# Hebrew
 [Am]Adonai ori veh [G]yishee [Dm]mimi [Am]ira
 [Am]Adonai maoz [G]chayai [Dm]mimi [Am]efchad
 
@@ -19,3 +20,50 @@ Adonai [Am]ori
 [F]Shivti [G]beveit [C]Adonai kal [E]yamey [E7]chayai
 
 Adonai [Am]ori
+
+# English (to sing)
+[Am]You are my light and my [G]rescue, [Dm]whom shall [Am]I fear?
+[Am]Strength of my life you [G]are, Lord, [Dm]whom should [Am]I dread?
+
+[Dm]When the wicked [Am]close around [G]me to tear my [Am]flesh and bone,
+[Dm]foes and my enemies, [Am]they all [G]stumble and [Am]fall to the ground.
+[Dm]Though an army [Am]camps all around me, [G]my heart will [Am]not fear;
+[Dm]though a war should rise [Am]against me, [G]even then I___
+[E]trust in you.
+
+Lord, you are [Am]my light
+
+[Am]Just one thing I ask [F]from the Lord, this alone I [Dm]seek out [Am]
+[F]To dwell [G]in the [C]house of the Lord [E]all of [E7]my days
+
+Lord, you are [Am]my light
+> The English words are a free translation made to fit the melody and the chords.
+
+=== Meaning
+Psalm 27, verses 1 to 4, a psalm of David: a song of trust in the middle of danger.
+
+Overall meaning:
+"The Lord is my light and my salvation – whom should I fear? The Lord is the stronghold of my life – of whom should I be afraid? When evildoers close in on me to devour me, it is my enemies and foes who stumble and fall. Even if an army camps against me, my heart will not fear; even if war rises against me, in this I trust. One thing I have asked of the Lord, this I seek: to dwell in the house of the Lord all the days of my life."
+
+Word by word:
+"Adonai" – my Lord; the name spoken in place of God's holy name
+"ori" – my light
+"ve-yishi" – and my salvation, my rescue
+"mimi ira" – whom shall I fear?
+"ma'oz chayai" – the stronghold, the fortress of my life
+"mimi efchad" – of whom should I be afraid?
+"bikrov alai mere'im" – when evildoers come near to me
+"le'echol et besari" – to devour my flesh
+"tzarai ve-oyvai li" – my adversaries and my enemies
+"hema kashlu ve-nafalu" – they stumble and fall
+"im tachaneh alai machaneh" – if an army camps against me
+"lo yira libi" – my heart will not fear
+"im takum alai milchama" – if war rises against me
+"be-zot ani boteach" – even in this I trust
+"achat sha'alti me'et Adonai" – one thing I have asked of the Lord
+"otah avakesh" – this I seek
+"shivti be-veit Adonai" – that I may dwell in the house of the Lord
+"kol yemei chayai" – all the days of my life
+
+The deeper picture:
+The psalm does not deny the danger – enemies, armies, war are all named. Its strength is that fear is met with trust, again and again. And at the end the wish is not for victory but for closeness: to live in God's house, in God's presence, every day of one's life. Light, rescue and a safe place belong together.
