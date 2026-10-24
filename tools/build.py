@@ -75,7 +75,7 @@ def parse(path):
     for t in song['texts']:
         t['body'] = '\n'.join(t['body']).strip()
     words = ' '.join(re.sub(r'\[[^\]]*\]', '', l) for s in song['sections'] for l in s['lines'] if isinstance(l, str))
-    song['find'] = fold(song['title'] + ' ' + words)
+    song['find'] = fold(' '.join([song['title'], song.get('note', ''), words]))   # the note too: a search for "taize" finds the Taizé chants
     return song
 
 
