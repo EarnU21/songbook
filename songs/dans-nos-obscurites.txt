@@ -1,9 +1,17 @@
-title: Dans nos obscurités
+title: Dans nos obscurités / Im Dunkel unsrer Nacht
 key: Em
 note: Taizé
 
+# Français
 [B]Dans nos obscuri[Em]tés,
 allume le feu qui ne s'éteint [D]ja-[G]mais, qui ne s'é-[C]teint [G]ja-[D]mais.
 
 Dans [G]nos obs-[Em]curi-[C]tés,
 allume le [B]feu qui ne s'é-[Em]teint [(D7)]ja-[B]mais, qui ne s'é-[Em]teint [(D7)]ja-[B]mais.
+
+# Deutsch
+[B]Im Dunkel unsrer [Em]Nacht,
+entzünde das Feuer, das nie mehr [D]er[G]lischt, das nie [C]mehr [G]er[D]lischt.
+
+Im [G]Dunkel [Em]unsrer [C]Nacht,
+entzünde das [B]Feuer, das nie [Em]mehr [(D7)]er[B]lischt, das nie [Em]mehr [(D7)]er[B]lischt.
