@@ -159,6 +159,19 @@ function renderKey() {
   document.getElementById('facts').innerHTML = facts;
 }
 
+/* A folded-up text. "Translation & Meaning" has two parts, "Wort für Wort" (one "word – meaning" per line) and
+   "Bedeutung"; those get headings and the words stand out. Any other text is shown as it was written. */
+function textHTML(body) {
+  if (!/^Wort für Wort$/m.test(body)) return `<div>${esc(body)}</div>`;
+  let words = false;
+  return '<div class="tm">' + body.split('\n').map(line => {
+    if (/^(Wort für Wort|Bedeutung)$/.test(line)) { words = line === 'Wort für Wort'; return `<h4>${esc(line)}</h4>`; }
+    const m = words && /^(.+?) – (.+)$/.exec(line);
+    if (m) return `<p class="gloss"><b>${esc(m[1])}</b> – ${esc(m[2])}</p>`;
+    return line.trim() ? `<p>${esc(line)}</p>` : '';
+  }).join('') + '</div>';
+}
+
 function renderPage() {
   document.title = SONG.title + ' | Mantra Collection';
   document.getElementById('title').textContent = SONG.title;
@@ -168,7 +181,7 @@ function renderPage() {
   /* recordings load only when played; the offline worker keeps each one after its first play */
   document.getElementById('audio').innerHTML = SONG.audio.map(a =>
     `<figure>${a.label ? `<figcaption>${esc(a.label)}</figcaption>` : ''}<audio controls preload="none" src="${esc(a.src)}"></audio></figure>`).join('');
-  document.getElementById('texts').innerHTML = SONG.texts.map(t => `<details><summary>${esc(t.title)}</summary><div>${esc(t.body)}</div></details>`).join('');
+  document.getElementById('texts').innerHTML = SONG.texts.map(t => `<details><summary>${esc(t.title)}</summary>${textHTML(t.body)}</details>`).join('');
   const i = SONGS.indexOf(SONG), prev = SONGS[i - 1], next = SONGS[i + 1];
   document.getElementById('foot').innerHTML = (prev ? `<a href="#/${prev.slug}">← ${esc(prev.title)}</a>` : '<span></span>') + (next ? `<a href="#/${next.slug}">${esc(next.title)} →</a>` : '');
   renderKey(); renderSong();
