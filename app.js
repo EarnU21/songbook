@@ -159,13 +159,17 @@ function renderKey() {
   document.getElementById('facts').innerHTML = facts;
 }
 
-/* A folded-up text. "Translation & Meaning" has two parts, "Wort für Wort" (one "word – meaning" per line) and
-   "Bedeutung"; those get headings and the words stand out. Any other text is shown as it was written. */
+/* A folded-up text. "Translation & Meaning" has three parts: "Herkunft" (lines like "Sprache: …"), "Wort für Wort"
+   (one "word – meaning" per line) and "Bedeutung"; they get headings and the labels and words stand out.
+   A "Herkunft" text on its own is just the labelled lines. Any other text is shown as it was written. */
 function textHTML(body) {
-  if (!/^Wort für Wort$/m.test(body)) return `<div>${esc(body)}</div>`;
+  const LABEL = /^(Sprache|Kultur|Quelle|Zeit & Quelle|Lied): (.+)$/;
+  if (!/^(Wort für Wort|Bedeutung|Herkunft)$/m.test(body) && !body.split('\n').some(l => LABEL.test(l))) return `<div>${esc(body)}</div>`;
   let words = false;
   return '<div class="tm">' + body.split('\n').map(line => {
-    if (/^(Wort für Wort|Bedeutung)$/.test(line)) { words = line === 'Wort für Wort'; return `<h4>${esc(line)}</h4>`; }
+    if (/^(Herkunft|Wort für Wort|Bedeutung)$/.test(line)) { words = line === 'Wort für Wort'; return `<h4>${esc(line)}</h4>`; }
+    const l = LABEL.exec(line);
+    if (l) return `<p class="gloss"><b>${esc(l[1])}:</b> ${esc(l[2])}</p>`;
     const m = words && /^(.+?) – (.+)$/.exec(line);
     if (m) return `<p class="gloss"><b>${esc(m[1])}</b> – ${esc(m[2])}</p>`;
     return line.trim() ? `<p>${esc(line)}</p>` : '';
