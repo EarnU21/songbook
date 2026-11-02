@@ -2,7 +2,6 @@ title: Can you hear the robin?
 key: D
 capo: 2
 note: Robin Song
-> Harmonium: AD AE GE
 
 [D5]Good morning, do [Am7]you [G]hear the [C]robin?
 [C]Long [D5]was she asleep

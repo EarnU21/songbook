@@ -10,7 +10,6 @@ audio: audio/shankara-karunakara.mp3 | Shankara
 [Bm]Shankara [D]Karunakara
 [A]Jagadeswara [Bm]Parameshvara
 
-> Harmonium: Bm = B D F#, A = A C# E, G = G B D, D = A D F#
 
 === Translation & Meaning
 Herkunft

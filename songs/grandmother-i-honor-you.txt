@@ -1,8 +1,8 @@
 title: Grandmother I honor you
 key: Am
 capo: 2
-link: Spotify Link a song by Sunny Davidson | https://open.spotify.com/intl-de/track/7w97836S2jTUJT9NY9B05X?si=d4a59cf30fd9489e
-link: Spotify Link a song by Sunny Davidson | https://open.spotify.com/intl-de/artist/3v1V1SGBYtGFJNTOnfMo1h
+note: by Sunny Davidson
+link: Spotify | https://open.spotify.com/intl-de/track/7w97836S2jTUJT9NY9B05X?si=d4a59cf30fd9489e
 % key guessed from the first chord
 % check: two keys in the source (like Dm/Em); the first one was kept
 audio: audio/grandmother-i-honor-you.m4a
