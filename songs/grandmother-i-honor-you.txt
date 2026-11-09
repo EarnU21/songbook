@@ -12,5 +12,5 @@ audio: audio/grandmother-i-honor-you.m4a
 [Am]Grandfather I honor you, your spirit is [G]my guide.
 [Em]Every day and every [F]night, I give [G]thanks for [Am]your life.
 
-[Am]Aa-[G]weeeey aweey aw-[Em]ee a-[Am]jo
-[Am]Aa-[G]weey aweey a-[Am]jo
+[Am]Aa[G]wey awey aw[Em]eey a[Am]jo
+[Am]Aa[G]wey awey a[Am]jo
